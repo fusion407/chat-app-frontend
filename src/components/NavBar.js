@@ -1,29 +1,67 @@
 import React from "react"
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
+import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+const linkStyles = {
+    display: "inline-flex",
+    // flexdirection: "baseline",
+    alignself: "center",
+    justifycontent: "center",
+    width: "100px",
+    padding: "12px",
+    margin: "6px 6px 6px",
+    background: "lightblue",
+    textDecoration: "none",
+    color: "black",
+  };
 function NavBar() {
-    return(
-        <div>  
-            <Stack direction="horizontal" gap={2}>
-            <h2>Chat-App</h2>  
-            <Button as="a" variant="dark">
-              Home
-            </Button>
-            <Button as="a" variant="dark">
-              Join Chat
-            </Button>
-            <Button as="a" variant="dark">
-              New Chat
-            </Button>
-            <Button as="a" variant="dark">
-              Users
-            </Button>
-            <Button as="a" variant="dark">
-              Login
-            </Button>
-            </Stack>        
-        </div>
-    )
-}
+    return (
+      <div>
+        <NavLink
+          to="/"
+          /* set exact so it knows to only set activeStyle when route is deeply equal to link */
+          exact
+          /* add styling to Navlink */
+          style={linkStyles}
+          /* add prop for activeStyle */
+          activeStyle={{
+            background: "grey",
+          }}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/chat"
+          exact
+          style={linkStyles}
+          activeStyle={{
+            background: "grey",
+          }}
+        >
+          Chat
+        </NavLink>
+        <NavLink
+          to="/users"
+          exact
+          style={linkStyles}
+          activeStyle={{
+            background: "grey",
+          }}
+        >
+          Users
+        </NavLink>
+        <NavLink
+          to="/login"
+          exact
+          style={linkStyles}
+          activeStyle={{
+            background: "grey",
+          }}
+        >
+          Login
+        </NavLink>
+      </div>
+    );
+  }
 
 export default NavBar
