@@ -8,7 +8,7 @@ function Message ({name, comment, image}) {
                 <img className="avatarImage" src={image}></img>
             </div>
             <div className="bg-dark">
-                <ListGroup.Item variant="dark">{name}:</ListGroup.Item>
+                <ListGroup.Item variant="dark">{name ? name : "Anonymous"}:</ListGroup.Item>
                 <ListGroup.Item variant="lightblue">{comment}</ListGroup.Item>
             </div>
 

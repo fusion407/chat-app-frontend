@@ -22,7 +22,7 @@ function Login({setIsLoggedIn}) {
     }
 
     return (
-      <div>
+      <div className="loginScreen">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -30,6 +30,7 @@ function Login({setIsLoggedIn}) {
                 type="text" 
                 name="username" 
                 value={FormData.username}
+                user={FormData.username}
                 onChange={handleChange}
                 placeholder="Username" 
             />

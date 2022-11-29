@@ -9,9 +9,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
+function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [user, setUser] = useState("")
   return (
     <div className="App-header">
       <NavBar />
@@ -23,7 +23,7 @@ function App() {
           <Users isLoggedIn={isLoggedIn}/>
         </Route>
         <Route exact path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn}/>
+          <Login setIsLoggedIn={setIsLoggedIn} user={user} />
         </Route>
         <Route exact path="/">
           <Home />
