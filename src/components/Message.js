@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Message ({name, comment}) {
+function Message ({name, comment, image}) {
     return(
-        <div>
-            <ListGroup.Item variant="secondary">{name}:</ListGroup.Item>
-            <ListGroup.Item>{comment}</ListGroup.Item>
+        <div className="chatBox">
+            <div>
+                <img className="avatarImage" src={image}></img>
+            </div>
+            <div className="bg-dark">
+                <ListGroup.Item variant="dark">{name}:</ListGroup.Item>
+                <ListGroup.Item variant="lightblue">{comment}</ListGroup.Item>
+            </div>
+
         </div>
     )
 }

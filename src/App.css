@@ -3,7 +3,7 @@ body {
   display: flex;
   text-align: center;
   justify-content: center;
-  color: white;
+  /* color: white; */
 }
 
 
@@ -12,17 +12,28 @@ body {
   text-align: center;
   justify-content: center;
   background-color: #194092;
-  min-height: max-content;
-  color: white;
+  /* min-height: max-content; */
+  color: rgb(126, 45, 45);
   padding-bottom: 1em;
 }
 .chatBox {
+  /* background-color: grey; */
   display: flex;
+  border-style: round;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
+  margin-top: 1em;
+  padding: 10px;
+  width: fit-content;
 }
-
+.avatarImage {
+  height: auto;
+  width: 100px;
+  padding-top: 30px;
+}
+.messageBox {
+  color: #282c34;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
