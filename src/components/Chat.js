@@ -8,10 +8,17 @@ function Chat({isLoggedIn}) {
     const history = useHistory();
     const [messages, setMessages] = useState([]);
     const [formData, setFormData] = useState({
-        comment: ""
+        name : '',
+        comment : '',
     })
     useEffect(() => {
-        fetch("http://localhost:3001/messages")
+        fetch("http://localhost:3001/messages", {
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json",
+                "allow-cors" : "true",
+            },
+        })
             .then((r) => r.json())
             .then((messages) => setMessages(messages));
     }, [])
