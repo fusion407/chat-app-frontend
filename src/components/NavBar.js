@@ -5,7 +5,7 @@ import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 const linkStyles = {
     display: "inline-flex",
     // flexdirection: "baseline",
-    alignself: "center",
+    aligncontent: "center",
     justifycontent: "center",
     width: "100px",
     padding: "12px",

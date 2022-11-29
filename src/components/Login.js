@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 
 function Login() {
     return (
@@ -13,7 +14,8 @@ function Login() {
           </div>
           <input type="submit" value="Submit" />
         </form>
-      </div>
+        <Button variant="dark">Create new account</Button>      
+        </div>
     );
   }
 

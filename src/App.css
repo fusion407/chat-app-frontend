@@ -7,10 +7,6 @@ body {
 }
 
 
-
-
-
-
 .App {
   display: flex;
   text-align: center;
@@ -19,6 +15,12 @@ body {
   min-height: max-content;
   color: white;
   padding-bottom: 1em;
+}
+.chatBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
 }
 
 /* .App-logo {
