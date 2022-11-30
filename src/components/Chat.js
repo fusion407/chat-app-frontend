@@ -12,11 +12,10 @@ function Chat({isLoggedIn}) {
         comment : '',
     })
     useEffect(() => {
-        fetch("http://localhost:3001/messages", {
+        fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
             headers: {
                 "Content-Type" : "application/json",
-                "allow-cors" : "true",
             },
         })
             .then((r) => r.json())
@@ -35,13 +34,14 @@ function Chat({isLoggedIn}) {
     function handleSubmit(e) {
         e.preventDefault();
         if(!formData.comment) return;
-        fetch("http://localhost:3001/messages", {
+        fetch("https://chat-app-data.onrender.com/messages", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "comment" : formData.comment
+                name : formData.name,
+                comment : formData.comment,
             })
         })
             .then((r) => r.json())
