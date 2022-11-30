@@ -12,6 +12,13 @@ function Chat({isLoggedIn}) {
         comment : '',
     })
     useEffect(() => {
+        getChatData()
+    }, [])
+    if(!messages) return "Loading..."
+
+    console.log(messages)
+
+    function getChatData() {
         fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
             headers: {
@@ -19,11 +26,9 @@ function Chat({isLoggedIn}) {
             },
         })
             .then((r) => r.json())
-            .then((messages) => setMessages(messages));
-    }, [])
-    if(!messages) return "Loading..."
-
-    console.log(messages)
+            .then((messages) => setMessages(messages))
+            .catch((error) => console.log(error))
+    }
 
     function handleChange(e) {
         setFormData({
@@ -46,8 +51,10 @@ function Chat({isLoggedIn}) {
         })
             .then((r) => r.json())
             .then((newMessage) =>
-                console.log(newMessage)
+                console.log(newMessage),
+
             )
+        getChatData()
     }
     history.push("/chat")
 
