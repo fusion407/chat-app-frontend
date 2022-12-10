@@ -34,6 +34,10 @@ body {
 .messageBox {
   color: #282c34;
 }
+.deleteButton {
+  align-self: center;
+  margin-left : 1em;
+}
 .homeScreen {
   margin-top : 2em;
 }

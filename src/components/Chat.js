@@ -18,6 +18,10 @@ function Chat({isLoggedIn}) {
 
     console.log(messages)
 
+    const deleteComment = async (id) => {
+        console.log(id)
+    }
+
     function getChatData() {
         fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
@@ -45,6 +49,7 @@ function Chat({isLoggedIn}) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                key : formData.id,
                 name : formData.name,
                 comment : formData.comment,
             })
@@ -60,10 +65,12 @@ function Chat({isLoggedIn}) {
 
     const messagesToDisplay = messages.map((message) => 
         <Message 
+            id={message.id}
             key={message.id}
             name={message.name}
             comment={message.comment}
             image={message.image}
+            deleteComment={deleteComment}
         />
     )
     // if(!isLoggedIn) return <Redirect to="/login" />
