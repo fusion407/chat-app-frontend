@@ -1,5 +1,5 @@
 body {
-  background-color: #282c34;
+  background-color: #14365d;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -7,13 +7,13 @@ body {
 }
 
 a {
-  border-style:groove;
+  border-style: groove;
 }
 .App {
   display: flex;
   text-align: center;
   justify-content: center;
-  background-color: #194092;
+  background-color: #2F5C8F;
   /* min-height: max-content; */
   color: rgb(126, 45, 45);
   padding-bottom: 1em;
@@ -22,10 +22,12 @@ a {
   /* background-color: grey; */
   display: flex;
   justify-content: center;
+  /* background-color: #2F5C8F; */
   align-items: center;
   align-self: center;
-  margin-top: 1em;
-  padding: 10px;
+  /* margin-top: 1em; */
+  margin-bottom: 1em;
+  padding: 20px;
 }
 .chatPage {
   display: block;
@@ -35,6 +37,8 @@ a {
   display: block;
   margin-top: 1em;
   border-style: solid;
+  border-color: #2F5C8F;
+  padding-bottom: 1em;
 }
 .avatarImage {
   height: auto;
@@ -54,27 +58,12 @@ a {
 .loginScreen {
   margin-top : 2em;
 }
-/* .newComment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2em;
-  width: 2em;
+.newComment {
+  margin-bottom: 2em;
   
-} */
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
-
+}
 .App-header {
-  background-color: #282c34;
+  background-color: #14365d;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -83,16 +72,3 @@ a {
   color: white;
   margin-top: 1em;
 }
-
-/* .App-link {
-  color: #61dafb;
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

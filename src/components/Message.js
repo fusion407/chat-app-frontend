@@ -8,8 +8,8 @@ function Message ({id, name, comment, image, deleteComment}) {
                 <img className="avatarImage" src={image}></img>
             </div>
             <div className="bg-dark">
-                <ListGroup.Item variant="dark">{name ? name : "Anonymous"}:</ListGroup.Item>
-                <ListGroup.Item variant="lightblue">{comment}</ListGroup.Item>
+                <ListGroup.Item variant="primary">{name ? name : "Anonymous"}:</ListGroup.Item>
+                <ListGroup.Item variant="light">{comment}</ListGroup.Item>
             </div>
             <div className="deleteButton">
                 <button onClick={() => deleteComment(id)} >Delete</button>
