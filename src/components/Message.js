@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Message ({name, comment, image, deleteComment}) {
+function Message ({id, name, comment, image, deleteComment}) {
     return(
         <div className="chatBox" value={name}>
             <div>
@@ -11,8 +11,8 @@ function Message ({name, comment, image, deleteComment}) {
                 <ListGroup.Item variant="dark">{name ? name : "Anonymous"}:</ListGroup.Item>
                 <ListGroup.Item variant="lightblue">{comment}</ListGroup.Item>
             </div>
-            <div onClick={deleteComment} className="deleteButton">
-                <button >Delete</button>
+            <div className="deleteButton">
+                <button onClick={() => deleteComment(id)} >Delete</button>
             </div>
         </div>
     )

@@ -3,12 +3,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function User ({name, image}) {
     return(
-        <div className="chatBox">
+        <div className="usersBox">
+            <h1>{name}</h1>
             <div>
                 <img className="avatarImage" src={image}></img>
-            </div>
-            <div className="bg-dark">
-                <ListGroup.Item variant="dark">{name ? name : "Anonymous"}</ListGroup.Item>
             </div>
         </div>
     )

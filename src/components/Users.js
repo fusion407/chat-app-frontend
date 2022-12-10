@@ -39,12 +39,9 @@ const usersToDisplay = users.map((user) =>
 )
 
     return (
-      <div>
-        <h1>Users</h1>
         <div>
           {usersToDisplay}
         </div>
-      </div>
     );
   }
 

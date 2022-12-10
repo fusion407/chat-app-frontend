@@ -4,7 +4,6 @@ import Stack from 'react-bootstrap/Stack';
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 const linkStyles = {
     display: "inline-flex",
-    // flexdirection: "baseline",
     aligncontent: "center",
     justifycontent: "center",
     width: "100px",

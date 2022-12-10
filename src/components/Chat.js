@@ -20,6 +20,23 @@ function Chat({isLoggedIn}) {
 
     const deleteComment = async (id) => {
         console.log(id)
+        fetch(`https://chat-app-data.onrender.com/messages/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+        })
+            .then((res) => {
+                if(res.status !== 200) {
+                    return;
+                } else {
+                    setMessages(
+                        messages.filter((message) => {
+                            return message.id !== id;
+                        })
+                    )
+                }
+            })    
     }
 
     function getChatData() {
@@ -76,7 +93,7 @@ function Chat({isLoggedIn}) {
     // if(!isLoggedIn) return <Redirect to="/login" />
 
     return (
-        <div>
+        <div className="chatPage">
             <div className="chatBox">
                 <div>
                     <Card style={{ background: "black", width: '30rem' }}>
