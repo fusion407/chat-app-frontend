@@ -110,7 +110,6 @@ function Chat({isLoggedIn, loggedInUser}) {
                         <input 
                             type="text"
                             name="comment"
-                            // value={formData.comment}
                             onChange={handleChange}
                         />
                     </label>
