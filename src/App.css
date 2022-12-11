@@ -1,9 +1,10 @@
 body {
   background-color: #14365d;
   display: flex;
+  align-items: center;
   text-align: center;
   justify-content: center;
-  /* color: white; */
+  color: white;
 }
 
 a {
@@ -18,13 +19,13 @@ a {
   color: rgb(126, 45, 45);
   padding-bottom: 1em;
 }
-.chatBox {
+div.chatBox {
   /* background-color: grey; */
   display: flex;
-  justify-content: center;
+  justify-content: left;
   /* background-color: #2F5C8F; */
   align-items: center;
-  align-self: center;
+  align-self: baseline;
   /* margin-top: 1em; */
   margin-bottom: 1em;
   padding: 20px;
@@ -34,23 +35,31 @@ a {
   justify-content: center;
 }
 .usersBox {
-  display: block;
+  display: flex;
   margin-top: 1em;
-  border-style: solid;
+  text-align: center;
   border-color: #060709;
-  padding-bottom: 1em;
+  flex-direction: row;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.userBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-end;
 }
 .avatarImage {
-  height: auto;
-  width: 100px;
-  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  height: 5rem;
+  width: 6rem;
 }
 .messageBox {
   color: #282c34;
 }
 .deleteButton {
-  align-self: center;
-  margin-left : 1em;
+  margin-left : 2em;
 }
 .homeScreen {
   margin-top : 2em;
@@ -64,11 +73,4 @@ a {
 }
 .App-header {
   background-color: #14365d;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  margin-top: 1em;
 }

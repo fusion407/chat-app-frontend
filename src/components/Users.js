@@ -14,35 +14,19 @@ if(!users) return "Loading..."
 
 if(!isLoggedIn) return <Redirect to="/login" />
 
-
-function getUserData(data) {
-  // fetch("https://chat-app-data.onrender.com/messages", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type" : "application/json",
-  //   },
-  // })
-  //   .then((r) => r.json())
-  //   .then((user) => setUsers(user))
-  //   .catch((error) => console.log(error))
-
-
-
-}
-
 const usersToDisplay = users.map((user) => 
 <ul>
-<User 
+  <User 
     key={user.id}
     name={user.username}
     avatar={user.avatarURL}
-/>
+  />
 </ul>
 
 )
 
     return (
-        <div>
+        <div className="usersBox">
           {users ? usersToDisplay : "No users"}
         </div>
     );

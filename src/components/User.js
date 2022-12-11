@@ -3,11 +3,9 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function User ({name, avatar}) {
     return(
-        <div className="usersBox">
+        <div className="userBox">
             <h1>{name}</h1>
-            <div>
-                <img className="avatarImage" src={avatar}></img>
-            </div>
+            <img className="avatarImage" src={avatar}></img>
         </div>
     )
 }
