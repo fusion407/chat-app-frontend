@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
 
-function Chat({isLoggedIn}) {
+function Chat({isLoggedIn, userData}) {
     const history = useHistory();
     const [messages, setMessages] = useState([]);
     const [formData, setFormData] = useState({
@@ -17,8 +17,6 @@ function Chat({isLoggedIn}) {
         getChatData()
     }, [])
     if(!messages) return "Loading..."
-
-    console.log(messages)
 
     const deleteComment = async (id) => {
         console.log(id)
@@ -71,14 +69,14 @@ function Chat({isLoggedIn}) {
             },
             body: JSON.stringify({
                 key : formData.id,
-                name : formData.name,
+                name : userData.username,
                 comment : formData.comment,
+                image : userData.avatar,
             })
         })
             .then((r) => r.json())
             .then((newMessage) =>
                 console.log(newMessage),
-
             )
         getChatData()
     }

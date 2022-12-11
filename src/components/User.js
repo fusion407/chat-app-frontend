@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function User ({name, image}) {
+function User ({id, name, image}) {
     return(
         <div className="usersBox">
             <h1>{name}</h1>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
 import User from "./User"
 
-function Users({isLoggedIn}) {
+function Users({isLoggedIn, userData}) {
 
 const [users, setUsers] = useState([]);
 

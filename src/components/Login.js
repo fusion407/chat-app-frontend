@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-function Login({setIsLoggedIn}) {
+function Login({setIsLoggedIn, setLoggedInUser}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
+        avatar: '',
         username: '',
         password: '',
     });
 
     function checkLoginData(data) {
       let foundUser = false;
+      let correctPassword = false;
       fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
         headers: {
@@ -25,20 +27,26 @@ function Login({setIsLoggedIn}) {
               console.log('found a matching username')
               if(data.password == user.password) {
                 console.log('validation succesful!')
+                correctPassword = true;
                 setIsLoggedIn(true)
                 alert(`Welcome, ${user.username}! You may now chat.`)
                 return;
               } else {
+                console.log('but password is invalid')
+                setIsLoggedIn(false)
                 alert("Wrong password!")
+                return;
               }
             }  
           })
-          if(foundUser) {
-            return;
-          } else {
+          if(foundUser && correctPassword) {
+            console.log("logged in user: ")
+            setLoggedInUser(data);
+          } else if(!foundUser) {
+            setIsLoggedIn(false)
             alert("It looks like you dont have an account, so I'll make one for you")
             submitLoginData(data)
-            setIsLoggedIn(true)
+            alert(`You're username is ${data.username}. You may now login.`)
           }
         })
         .catch((error) => console.log(error))
@@ -71,6 +79,7 @@ function Login({setIsLoggedIn}) {
         e.preventDefault();
         checkLoginData(formData);
         history.push("/");
+
     }
 
     return (
