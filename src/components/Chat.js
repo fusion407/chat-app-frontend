@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
 
-function Chat({isLoggedIn, userData}) {
+function Chat({isLoggedIn, loggedInUserData}) {
     const history = useHistory();
     const [messages, setMessages] = useState([]);
     const [formData, setFormData] = useState({
@@ -69,9 +69,9 @@ function Chat({isLoggedIn, userData}) {
             },
             body: JSON.stringify({
                 key : formData.id,
-                name : userData.username,
+                name : loggedInUserData.username,
                 comment : formData.comment,
-                image : userData.avatar,
+                image : loggedInUserData.avatar,
             })
         })
             .then((r) => r.json())

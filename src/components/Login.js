@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-function Login({setIsLoggedIn, setLoggedInUser}) {
+function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
         avatar: '',
@@ -10,9 +10,40 @@ function Login({setIsLoggedIn, setLoggedInUser}) {
         password: '',
     });
 
-    function checkLoginData(data) {
+    function checkLoginData(users) {
       let foundUser = false;
       let correctPassword = false;
+      users.forEach((user) => {
+        if(formData.username == user.username ) {
+          foundUser = true;
+          console.log('found a matching username')
+          if(formData.password == user.password) {
+            console.log('validation succesful!')
+            correctPassword = true;
+            setIsLoggedIn(true)
+            alert(`Welcome, ${user.username}! You may now chat.`)
+            return;
+          } else {
+            console.log('but password is invalid')
+            setIsLoggedIn(false)
+            alert("Wrong password!")
+            return;
+          }
+        }  
+      })
+      if(foundUser && correctPassword) {
+        console.log("logged in user: ")
+        setLoggedInUser(formData);
+        setUsersData(users);
+      } else if(!foundUser) {
+        setIsLoggedIn(false)
+        alert("It looks like you dont have an account, so I'll make one for you")
+        submitLoginData(formData)
+        alert(`You're username is ${formData.username}. You may now login.`)
+      }
+    }
+
+    function fetchLoginData() {
       fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
         headers: {
@@ -20,35 +51,7 @@ function Login({setIsLoggedIn, setLoggedInUser}) {
         },
     })
         .then((r) => r.json())
-        .then((users) => {
-          users.forEach((user) => {
-            if(data.username == user.username ) {
-              foundUser = true;
-              console.log('found a matching username')
-              if(data.password == user.password) {
-                console.log('validation succesful!')
-                correctPassword = true;
-                setIsLoggedIn(true)
-                alert(`Welcome, ${user.username}! You may now chat.`)
-                return;
-              } else {
-                console.log('but password is invalid')
-                setIsLoggedIn(false)
-                alert("Wrong password!")
-                return;
-              }
-            }  
-          })
-          if(foundUser && correctPassword) {
-            console.log("logged in user: ")
-            setLoggedInUser(data);
-          } else if(!foundUser) {
-            setIsLoggedIn(false)
-            alert("It looks like you dont have an account, so I'll make one for you")
-            submitLoginData(data)
-            alert(`You're username is ${data.username}. You may now login.`)
-          }
-        })
+        .then((users) => checkLoginData(users))
         .catch((error) => console.log(error))
     }    
     function submitLoginData(data) {
@@ -77,7 +80,7 @@ function Login({setIsLoggedIn, setLoggedInUser}) {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        checkLoginData(formData);
+        fetchLoginData(formData);
         history.push("/");
 
     }

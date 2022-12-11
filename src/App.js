@@ -11,22 +11,24 @@ import './App.css';
 
 function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [allUsersData, setUsersData] = useState({})
   const [loggedInUser, setLoggedInUser] = useState({})
   if(isLoggedIn) {
     console.log(loggedInUser)
+    console.log(allUsersData)
   }
   return (
     <div className="App-header">
       <NavBar />
       <Switch>
         <Route exact path="/chat">
-          <Chat isLoggedIn={isLoggedIn} userData={loggedInUser}/>
+          <Chat isLoggedIn={isLoggedIn} loggedInUserData={loggedInUser}/>
         </Route>
         <Route exact path="/users">
-          <Users isLoggedIn={isLoggedIn}/>
+          <Users isLoggedIn={isLoggedIn} userData={allUsersData}/>
         </Route>
         <Route exact path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} />
+          <Login setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} setUsersData={setUsersData}/>
         </Route>
         <Route exact path="/">
           <Home />

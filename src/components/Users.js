@@ -7,7 +7,7 @@ function Users({isLoggedIn, userData}) {
 const [users, setUsers] = useState([]);
 
 useEffect(() => {
-  getUserData()
+  setUsers(userData)
 }, [])
 if(!users) return "Loading..."
 
@@ -15,24 +15,27 @@ if(!users) return "Loading..."
 if(!isLoggedIn) return <Redirect to="/login" />
 
 
-function getUserData() {
-  fetch("https://chat-app-data.onrender.com/messages", {
-    method: "GET",
-    headers: {
-      "Content-Type" : "application/json",
-    },
-  })
-    .then((r) => r.json())
-    .then((user) => setUsers(user))
-    .catch((error) => console.log(error))
+function getUserData(data) {
+  // fetch("https://chat-app-data.onrender.com/messages", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type" : "application/json",
+  //   },
+  // })
+  //   .then((r) => r.json())
+  //   .then((user) => setUsers(user))
+  //   .catch((error) => console.log(error))
+
+
+
 }
 
 const usersToDisplay = users.map((user) => 
 <ul>
 <User 
     key={user.id}
-    name={user.name}
-    image={user.image}
+    name={user.username}
+    image={user.avatar}
 />
 </ul>
 
