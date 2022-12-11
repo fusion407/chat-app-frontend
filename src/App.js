@@ -4,20 +4,17 @@ import Login from './components/Login'
 import Users from './components/Users'
 import Chat from './components/Chat'
 import NavBar from './components/NavBar'
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App(props) {
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allUsersData, setUsersData] = useState({})
   const [loggedInUser, setLoggedInUser] = useState({})
-  if(isLoggedIn) {
-    console.log(loggedInUser)
-    console.log(allUsersData)
-  }
+
   return (
-    <div className="App-header">
+    <div>
       <NavBar />
       <Switch>
         <Route exact path="/chat">

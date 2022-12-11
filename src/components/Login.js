@@ -10,7 +10,6 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
         avatarURL: '',
 
     });
-
     function checkLoginData(users) {
       let foundUser = false;
       let correctPassword = false;
@@ -40,11 +39,8 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
           alert("It looks like you dont have an account, so I'll make one for you")
           submitLoginData(formData)
           alert(`You're username is ${formData.username}.`)
-
-
       }
     }
-
     async function fetchLoginData() {
       fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
@@ -87,9 +83,7 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
         e.preventDefault();
         fetchLoginData(formData);
         history.push("/");
-
     }
-
     return (
       <div className="loginScreen">
         <h1>Login</h1>

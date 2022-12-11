@@ -11,7 +11,6 @@ useEffect(() => {
 }, [])
 if(!users) return "Loading..."
 
-
 if(!isLoggedIn) return <Redirect to="/login" />
 
 const usersToDisplay = users.map((user) => 
@@ -22,9 +21,7 @@ const usersToDisplay = users.map((user) =>
     avatar={user.avatarURL}
   />
 </ul>
-
 )
-
     return (
         <div className="usersBox">
           {users ? usersToDisplay : "No users"}

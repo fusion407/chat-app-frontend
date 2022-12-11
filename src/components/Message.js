@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function Message ({id, name, comment, avatarURL, deleteComment}) {
@@ -11,9 +11,7 @@ function Message ({id, name, comment, avatarURL, deleteComment}) {
                 <ListGroup.Item style={{background: "#f5eec2"}}>{name ? name : "Anonymous"}:</ListGroup.Item>
                 <ListGroup.Item>{comment}</ListGroup.Item>
             </div>
-
                 <button className="deleteButton" onClick={() => deleteComment(id)} >Delete</button>
-
         </div>
     )
 }

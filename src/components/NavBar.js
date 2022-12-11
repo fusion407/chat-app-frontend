@@ -1,6 +1,5 @@
 import React from "react"
-import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
+
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 const linkStyles = {
     display: "inline-flex",
