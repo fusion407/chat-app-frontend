@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
@@ -36,7 +38,9 @@ function Chat({isLoggedIn}) {
                         })
                     )
                 }
-            })    
+            })  
+            .catch((error) => console.log(error))
+  
     }
 
     function getChatData() {
@@ -90,7 +94,7 @@ function Chat({isLoggedIn}) {
             deleteComment={deleteComment}
         />
     )
-    // if(!isLoggedIn) return <Redirect to="/login" />
+    if(!isLoggedIn) return <Redirect to="/login" />
 
     return (
         <div className="chatPage">

@@ -9,6 +9,56 @@ function Login({setIsLoggedIn}) {
         password: '',
     });
 
+    function checkLoginData(data) {
+      let foundUser = false;
+      fetch("https://chat-app-data.onrender.com/users", {
+        method: "GET",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+    })
+        .then((r) => r.json())
+        .then((users) => {
+          users.forEach((user) => {
+            if(data.username == user.username ) {
+              console.log('found a matching username')
+              foundUser = true;
+              if(data.password == user.password) {
+                console.log('validation succesful!')
+                alert(`Welcome, ${user.username}! You may now chat.`)
+                setIsLoggedIn(true)
+                return;
+              } else {
+                console.log("Wrong password!")
+                foundUser = false;
+              }
+            }  
+          })
+          if(!foundUser) {
+            alert("looks like you dont have an account, so I'll make one for you")
+            submitLoginData(data)
+          }
+        })
+        .catch((error) => console.log(error))
+    }    
+    function submitLoginData(data) {
+      console.log(data);
+      fetch("https://chat-app-data.onrender.com/users", {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+        body: JSON.stringify({
+          key : data.id,
+          username : data.username,
+          password : data.password,
+      })
+    })
+        .then((r) => r.json())
+        .then((users) => console.log(users))
+        .catch((error) => console.log(error))
+    }
+
     function handleChange(e) {
         setFormData({
             ...formData,
@@ -17,7 +67,7 @@ function Login({setIsLoggedIn}) {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        setIsLoggedIn(true);
+        checkLoginData(formData);
         history.push("/");
     }
 
@@ -46,7 +96,7 @@ function Login({setIsLoggedIn}) {
           </div>
           <button type="submit">Login</button>
         </form>
-        <Button variant="dark">Create new account</Button>      
+        {/* <Button variant="dark">Create new account</Button>       */}
         </div>
     );
   }
