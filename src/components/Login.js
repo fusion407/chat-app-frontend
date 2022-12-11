@@ -21,22 +21,24 @@ function Login({setIsLoggedIn}) {
         .then((users) => {
           users.forEach((user) => {
             if(data.username == user.username ) {
-              console.log('found a matching username')
               foundUser = true;
+              console.log('found a matching username')
               if(data.password == user.password) {
                 console.log('validation succesful!')
-                alert(`Welcome, ${user.username}! You may now chat.`)
                 setIsLoggedIn(true)
+                alert(`Welcome, ${user.username}! You may now chat.`)
                 return;
               } else {
-                console.log("Wrong password!")
-                foundUser = false;
+                alert("Wrong password!")
               }
             }  
           })
-          if(!foundUser) {
-            alert("looks like you dont have an account, so I'll make one for you")
+          if(foundUser) {
+            return;
+          } else {
+            alert("It looks like you dont have an account, so I'll make one for you")
             submitLoginData(data)
+            setIsLoggedIn(true)
           }
         })
         .catch((error) => console.log(error))
