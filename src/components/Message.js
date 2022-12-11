@@ -7,13 +7,13 @@ function Message ({id, name, comment, avatarURL, deleteComment}) {
             <div>
                 <img className="avatarImage" src={avatarURL}></img>
             </div>
-            <div className="bg-dark">
-                <ListGroup.Item variant="primary">{name ? name : "Anonymous"}:</ListGroup.Item>
-                <ListGroup.Item variant="light">{comment}</ListGroup.Item>
+            <div>
+                <ListGroup.Item style={{background: "#f5eec2"}}>{name ? name : "Anonymous"}:</ListGroup.Item>
+                <ListGroup.Item>{comment}</ListGroup.Item>
             </div>
-            <div className="deleteButton">
-                <button onClick={() => deleteComment(id)} >Delete</button>
-            </div>
+
+                <button className="deleteButton" onClick={() => deleteComment(id)} >Delete</button>
+
         </div>
     )
 }

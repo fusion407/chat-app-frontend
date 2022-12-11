@@ -1,22 +1,23 @@
 body {
-  background-color: #14365d;
+  background-color: #f5eec2;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: white;
+  color: #39395f;
 }
 
-a {
+/* a {
   border-style: groove;
-}
+} */
 .App {
   display: flex;
   text-align: center;
   justify-content: center;
-  background-color: #2F5C8F;
+  background-color: #416a59;
+  /* color:#416a59; */
   /* min-height: max-content; */
-  color: rgb(126, 45, 45);
+  /* color: rgb(126, 45, 45); */
   padding-bottom: 1em;
 }
 div.chatBox {
@@ -30,14 +31,23 @@ div.chatBox {
   margin-bottom: 1em;
   padding: 20px;
 }
-.chatPage {
+/* .chatPage {
+  background: white;
+}
+.list-group.list-group-flush {
+  background: white;
+} */
+/* .chatPage {
   display: block;
   justify-content: center;
-}
+} */
 .usersBox {
   display: flex;
   margin-top: 1em;
+  padding-top: 1em;
+  padding-right: 1em;
   text-align: center;
+  border-style: solid;
   border-color: #060709;
   flex-direction: row;
   align-items: flex-end;
@@ -56,21 +66,31 @@ div.chatBox {
   width: 6rem;
 }
 .messageBox {
-  color: #282c34;
+  color: #416a59;
 }
-.deleteButton {
+button {
+  background-color: #a9c25d;
   margin-left : 2em;
+}
+button.deleteButton {
+  display: flex;
+  align-self: center;
 }
 .homeScreen {
   margin-top : 2em;
+  background-color: #73a24e;
+  padding: 1em 1em 1em 1em;
 }
 .loginScreen {
   margin-top : 2em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  background-color:#73a24e;
 }
 .newComment {
   margin-bottom: 2em;
   
 }
-.App-header {
+/* .App-header {
   background-color: #14365d;
-}
+} */

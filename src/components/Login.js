@@ -114,7 +114,7 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
             />
           </div>
           <div>
-            <p>Profile Picture:</p>
+            <p>Profile Picture: (if new user)</p>
             <input 
                 type="text" 
                 name="avatarURL" 

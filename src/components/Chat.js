@@ -97,13 +97,11 @@ function Chat({isLoggedIn, loggedInUser}) {
     return (
         <div className="chatPage">
             <div className="chatBox">
-                <div>
-                    <Card style={{ background: "black", width: '30rem' }}>
-                        <ListGroup style={{background: "#1c2a46", width: 'auto'}}variant="flush">
+                    <Card style={{ background: "#39395f", width: '35rem' }}>
+                        <ListGroup style={{background: "#73a24e", width: 'auto'}}variant="flush">
                             {messagesToDisplay}
                         </ListGroup>
                     </Card>
-                </div>
             </div>
             <div className="newComment">
                 <form onSubmit={handleSubmit}>

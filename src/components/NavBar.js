@@ -4,12 +4,13 @@ import Stack from 'react-bootstrap/Stack';
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 const linkStyles = {
     display: "inline-flex",
+    flexdirection: "row",
     aligncontent: "center",
     justifycontent: "center",
     width: "100px",
     padding: "12px",
     margin: "6px 6px 6px",
-    background: "#A96762",
+    background: "#73a24e",
     textDecoration: "none",
     color: "black",
   };
@@ -21,7 +22,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "grey",
+            background: "#a9c25d",
           }}
         >
           Home
@@ -31,7 +32,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "grey",
+            background: "#a9c25d",
           }}
         >
           Chat
@@ -41,7 +42,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "grey",
+            background: "#a9c25d",
           }}
         >
           Users
@@ -51,7 +52,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "grey",
+            background: "#a9c25d",
           }}
         >
           Login
