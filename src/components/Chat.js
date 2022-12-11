@@ -97,8 +97,8 @@ function Chat({isLoggedIn, loggedInUser}) {
     return (
         <div className="chatPage">
             <div className="chatBox">
-                    <Card style={{ background: "#39395f", width: '35rem' }}>
-                        <ListGroup style={{background: "#73a24e", width: 'auto'}}variant="flush">
+                    <Card style={{ background: "#39395f", width: '25rem' }}>
+                        <ListGroup style={{background: "#a9c25d", width: 'auto'}}variant="flush">
                             {messagesToDisplay}
                         </ListGroup>
                     </Card>
@@ -114,7 +114,9 @@ function Chat({isLoggedIn, loggedInUser}) {
                             onChange={handleChange}
                         />
                     </label>
-                    <button type="submit">Add Comment</button>
+                    <div>
+                        <button className="submitButton" type="submit">Add Comment</button>
+                    </div>
                 </form>
             </div>
         </div>

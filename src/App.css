@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+
 body {
   background-color: #f5eec2;
   display: flex;
+  font-family: 'Josefin Sans', cursive;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -58,6 +62,8 @@ div.chatBox {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-end;
+  background-color: #a9c25d;
+
 }
 .avatarImage {
   display: flex;
@@ -69,8 +75,15 @@ div.chatBox {
   color: #416a59;
 }
 button {
-  background-color: #a9c25d;
+  background-color: #73a24e;
   margin-left : 2em;
+}
+.submitButton {
+  margin-top: 1em;
+}
+button:hover {
+  background-color: #a9c25d;
+
 }
 button.deleteButton {
   display: flex;
@@ -78,18 +91,22 @@ button.deleteButton {
 }
 .homeScreen {
   margin-top : 2em;
-  background-color: #73a24e;
+  border-style: solid;
+  background-color: #a9c25d;
   padding: 1em 1em 1em 1em;
 }
 .loginScreen {
   margin-top : 2em;
+  border-style: solid;
   padding-bottom: 1em;
   padding-top: 1em;
-  background-color:#73a24e;
+  background-color:#a9c25d;
 }
 .newComment {
+  display: flex;
   margin-bottom: 2em;
-  
+  justify-content: center;
+  flex-direction: column;
 }
 /* .App-header {
   background-color: #14365d;

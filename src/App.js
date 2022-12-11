@@ -4,7 +4,6 @@ import Login from './components/Login'
 import Users from './components/Users'
 import Chat from './components/Chat'
 import NavBar from './components/NavBar'
-
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
