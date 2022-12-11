@@ -9,7 +9,7 @@ function Users({isLoggedIn, userData}) {
   // On page load, set 'users' state to 'userData's username and avatarURL
   useEffect(() => {
     setUsers(userData)
-  } , [])
+  }, [userData])
   if(!users) return "Loading..."
 
   // Checks to see if user is logged in

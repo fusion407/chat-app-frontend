@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
 
 function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
     const history = useHistory();
@@ -17,11 +16,11 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
       let correctPassword = false;
       users.forEach((user) => {
         // First find matching username
-        if(formData.username == user.username ) {
+        if(formData.username === user.username ) {
           foundUser = true;
           console.log('found a matching username')
           // Then check to see if password is correct
-          if(formData.password == user.password) {
+          if(formData.password === user.password) {
             console.log('validation succesful!')
             correctPassword = true;
             setLoggedInUser(user)

@@ -4,7 +4,7 @@ function User ({name, avatar}) {
     return(
         <div className="userBox">
             <h1>{name}</h1>
-            <img className="avatarImage" src={avatar}></img>
+            <img className="avatarImage" src={avatar} alt="avatarImg"></img>
         </div>
     )
 }

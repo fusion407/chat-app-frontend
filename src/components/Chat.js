@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card';
@@ -7,7 +6,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
 
 function Chat({isLoggedIn, loggedInUser}) {
-    const history = useHistory();
     const [messages, setMessages] = useState([]);
     const [formData, setFormData] = useState({
         username : '',
