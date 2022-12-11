@@ -13,11 +13,14 @@ function Chat({isLoggedIn, loggedInUser}) {
         username : '',
         comment : '',
     })
+    // Upon loading this page, data for chat will automatically 
+    // get fetched from server and appended onto page
     useEffect(() => {
         getChatData()
     }, [])
     if(!messages) return "Loading..."
 
+    // DELETE
     const deleteComment = async (id) => {
         console.log(id)
         fetch(`https://chat-app-data.onrender.com/messages/${id}`, {
@@ -38,9 +41,9 @@ function Chat({isLoggedIn, loggedInUser}) {
                 }
             })  
             .catch((error) => console.log(error))
-  
     }
 
+    // Fetches message data and sets state of 'messages'
     function getChatData() {
         fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
@@ -53,15 +56,23 @@ function Chat({isLoggedIn, loggedInUser}) {
             .catch((error) => console.log(error))
     }
 
+    // Event listener which sets the state of the formData each time the input is changed
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     }
+
+    // When the form is submitted, a POST request is made the server
+    // using data in the comment box and the username/avatar of the current
+    // logged in user
     function handleSubmit(e) {
         e.preventDefault();
+
+        // If not text was written in the comment field, return
         if(!formData.comment) return;
+
         fetch("https://chat-app-data.onrender.com/messages", {
             method: "POST",
             headers: {
@@ -78,9 +89,9 @@ function Chat({isLoggedIn, loggedInUser}) {
             .then((newMessage) =>
                 console.log(newMessage),
             )
+        // After data is sent to server, retrieve new chat data
         getChatData()
     }
-    history.push("/chat")
 
     const messagesToDisplay = messages.map((message) => 
         <Message 
@@ -92,6 +103,7 @@ function Chat({isLoggedIn, loggedInUser}) {
             deleteComment={deleteComment}
         />
     )
+    // Checks if user is logged in
     if(!isLoggedIn) return <Redirect to="/login" />
 
     return (
