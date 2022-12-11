@@ -6,11 +6,11 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
 
-function Chat({isLoggedIn, loggedInUserData}) {
+function Chat({isLoggedIn, loggedInUser}) {
     const history = useHistory();
     const [messages, setMessages] = useState([]);
     const [formData, setFormData] = useState({
-        name : '',
+        username : '',
         comment : '',
     })
     useEffect(() => {
@@ -69,9 +69,9 @@ function Chat({isLoggedIn, loggedInUserData}) {
             },
             body: JSON.stringify({
                 key : formData.id,
-                name : loggedInUserData.username,
+                name : loggedInUser.username,
                 comment : formData.comment,
-                image : loggedInUserData.avatar,
+                avatarURL : loggedInUser.avatarURL,
             })
         })
             .then((r) => r.json())
@@ -88,7 +88,7 @@ function Chat({isLoggedIn, loggedInUserData}) {
             key={message.id}
             name={message.name}
             comment={message.comment}
-            image={message.image}
+            avatarURL={message.avatarURL}
             deleteComment={deleteComment}
         />
     )

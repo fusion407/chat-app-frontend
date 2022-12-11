@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function User ({id, name, image}) {
+function User ({name, avatar}) {
     return(
         <div className="usersBox">
             <h1>{name}</h1>
             <div>
-                <img className="avatarImage" src={image}></img>
+                <img className="avatarImage" src={avatar}></img>
             </div>
         </div>
     )

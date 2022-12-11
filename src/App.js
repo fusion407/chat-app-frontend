@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Home from './components/Home'
 import Login from './components/Login'
+import CreateAccount from './components/CreateAccount'
 import Users from './components/Users'
 import Chat from './components/Chat'
 import NavBar from './components/NavBar'
@@ -22,7 +23,7 @@ function App(props) {
       <NavBar />
       <Switch>
         <Route exact path="/chat">
-          <Chat isLoggedIn={isLoggedIn} loggedInUserData={loggedInUser}/>
+          <Chat isLoggedIn={isLoggedIn} loggedInUser={loggedInUser}/>
         </Route>
         <Route exact path="/users">
           <Users isLoggedIn={isLoggedIn} userData={allUsersData}/>
@@ -30,6 +31,9 @@ function App(props) {
         <Route exact path="/login">
           <Login setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} setUsersData={setUsersData}/>
         </Route>
+        {/* <Route exact path="/create-account">
+          <CreateAccount />
+        </Route> */}
         <Route exact path="/">
           <Home />
         </Route>

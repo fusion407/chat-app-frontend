@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Message ({id, name, comment, image, deleteComment}) {
+function Message ({id, name, comment, avatarURL, deleteComment}) {
     return(
         <div className="chatBox" value={name}>
             <div>
-                <img className="avatarImage" src={image}></img>
+                <img className="avatarImage" src={avatarURL}></img>
             </div>
             <div className="bg-dark">
                 <ListGroup.Item variant="primary">{name ? name : "Anonymous"}:</ListGroup.Item>

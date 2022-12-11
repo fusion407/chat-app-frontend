@@ -5,9 +5,10 @@ import Button from 'react-bootstrap/Button';
 function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
-        avatar: '',
         username: '',
         password: '',
+        avatarURL: '',
+
     });
 
     function checkLoginData(users) {
@@ -20,9 +21,9 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
           if(formData.password == user.password) {
             console.log('validation succesful!')
             correctPassword = true;
+            setLoggedInUser(user)
             setIsLoggedIn(true)
             alert(`Welcome, ${user.username}! You may now chat.`)
-            return;
           } else {
             console.log('but password is invalid')
             setIsLoggedIn(false)
@@ -32,18 +33,19 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
         }  
       })
       if(foundUser && correctPassword) {
-        console.log("logged in user: ")
-        setLoggedInUser(formData);
-        setUsersData(users);
+          console.log("logged in user: ")
+          setUsersData(users);
       } else if(!foundUser) {
-        setIsLoggedIn(false)
-        alert("It looks like you dont have an account, so I'll make one for you")
-        submitLoginData(formData)
-        alert(`You're username is ${formData.username}. You may now login.`)
+          setIsLoggedIn(false)
+          alert("It looks like you dont have an account, so I'll make one for you")
+          submitLoginData(formData)
+          alert(`You're username is ${formData.username}.`)
+
+
       }
     }
 
-    function fetchLoginData() {
+    async function fetchLoginData() {
       fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
         headers: {
@@ -65,10 +67,13 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
           key : data.id,
           username : data.username,
           password : data.password,
+          avatarURL : data.avatarURL,
       })
     })
         .then((r) => r.json())
-        .then((users) => console.log(users))
+        .then((users) => {
+          setLoggedInUser(users);
+        })
         .catch((error) => console.log(error))
     }
 
@@ -94,7 +99,7 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
                 type="text" 
                 name="username" 
                 value={FormData.username}
-                user={FormData.username}
+                // user={FormData.username}
                 onChange={handleChange}
                 placeholder="Username" 
             />
@@ -108,9 +113,18 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
                 placeholder="Password" 
             />
           </div>
+          <div>
+            <p>Profile Picture:</p>
+            <input 
+                type="text" 
+                name="avatarURL" 
+                value={FormData.avatarURL}
+                onChange={handleChange}
+                placeholder="URL" 
+            />
+          </div>
           <button type="submit">Login</button>
         </form>
-        {/* <Button variant="dark">Create new account</Button>       */}
         </div>
     );
   }

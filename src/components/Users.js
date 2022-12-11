@@ -35,7 +35,7 @@ const usersToDisplay = users.map((user) =>
 <User 
     key={user.id}
     name={user.username}
-    image={user.avatar}
+    avatar={user.avatarURL}
 />
 </ul>
 
@@ -43,7 +43,7 @@ const usersToDisplay = users.map((user) =>
 
     return (
         <div>
-          {usersToDisplay}
+          {users ? usersToDisplay : "No users"}
         </div>
     );
   }
