@@ -48,7 +48,7 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
     }
 
     // Retrieves all user login data
-    async function fetchLoginData() {
+    function fetchLoginData() {
       fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
         headers: {
