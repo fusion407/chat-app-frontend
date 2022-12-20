@@ -19,6 +19,7 @@ In order to fulfill this projects requirements I must:
 In total I have 7 React components; Home, Chat, Message, NavBar, User, Users, Login.
 
 There are 4 different client-side routes: 
+
 /chat  -  chatroom  
 /users  -  all users  
 /login  -  login page  
@@ -27,3 +28,7 @@ There are 4 different client-side routes:
 Json-server is being used to make POST, GET, PATCH, and DELETE requests; fetching data from Chat, Login, and Users components and updating each props state accordingly.
 
 Finally, styling was done mostly done by vanilla CSS, but bootstrap was also used a bit.
+
+Blog: https://dev.to/fusion407/creating-a-responsive-chatroom-application-using-reactjs-and-json-server-2bgm
+
+Video: https://www.youtube.com/watch?v=mn5qa6W-ioY&ab_channel=Brady
