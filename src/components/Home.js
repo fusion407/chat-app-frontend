@@ -17,11 +17,12 @@ function Home() {
                 In order to create a new profile, make an attempt 
                 to login and please include the URL to the avatar 
                 photo you would like to use. In order to update your 
-                profile picture, log out and log in with the new URL.
+                profile picture, log out by refreshing the page 
+                and log in with the new URL.
             </p>
             <p>
                 *** This is a front end project, so don't input any 
-                credentials you often use. 
+                credentials you often use. ***
             </p>
             <p>
                 If you'd rather test one of the pre-made profiles, 

@@ -14,7 +14,6 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
   const [messages, setMessages] = useState([]);
 
-
   return (
     <div>
       <NavBar />

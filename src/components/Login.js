@@ -8,6 +8,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         password: '',
         avatarURL: '',
     });
+
     async function submitLoginData(data) {
       console.log(data);
       await fetch("https://chat-app-data.onrender.com/users", {
@@ -28,6 +29,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     }
+
     function checkLoginData(users) {
       let foundUser = false;
       let correctPassword = false;
@@ -65,6 +67,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
           history.push('/')
       }
     }
+
     async function fetchLoginData() {
       await fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
@@ -78,6 +81,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     } 
+
     function updateUserProfile(data, id) {
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
         method: "PATCH",
@@ -96,12 +100,14 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     }
+
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     }
+    
     function handleSubmit(e) {
         e.preventDefault();
         fetchLoginData(formData);
