@@ -5,25 +5,23 @@ function Home() {
         <div className="homeScreen">
             <h1>Welcome to Chat-App!</h1>
             <p>
-                This is a work-in-progress single page application coded with 
+                This is a single page application coded with 
                 ReactJS.
             </p>
             <p>
                 The purpose of this project is to learn React, 
                 and using it to perform basic CRUD operations 
-                using JSON Server.
+                using Node.js.
             </p>
             <p>
                 In order to create a new profile, make an attempt 
                 to login and please include the URL to the avatar 
-                photo you would like to use, then try logging in 
-                again.
+                photo you would like to use. In order to update your 
+                profile picture, log out and log in with the new URL.
             </p>
             <p>
-                (do not submit a username/password you use often)
-            </p>
-            <p>
-                (unless you reallllly trust me)
+                *** This is a front end project, so don't input any 
+                credentials you often use. 
             </p>
             <p>
                 If you'd rather test one of the pre-made profiles, 
