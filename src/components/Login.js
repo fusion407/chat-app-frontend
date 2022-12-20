@@ -1,68 +1,18 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
+function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
     const history = useHistory();
+    const [currentUser, setCurrentUser] = useState('')
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         avatarURL: '',
-
     });
-
-    // Checks to see if user exists
-    function checkLoginData(users) {
-      let foundUser = false;
-      let correctPassword = false;
-      users.forEach((user) => {
-        // First find matching username
-        if(formData.username === user.username ) {
-          foundUser = true;
-          console.log('found a matching username')
-          // Then check to see if password is correct
-          if(formData.password === user.password) {
-            console.log('validation succesful!')
-            correctPassword = true;
-            setLoggedInUser(user)
-            setIsLoggedIn(true)
-            alert(`Welcome, ${user.username}! You may now chat.`)
-          } else {
-            console.log('but password is invalid')
-            setIsLoggedIn(false)
-            alert("Wrong password!")
-            return;
-          }
-        }  
-      })
-      // If username and password is correct, log this user in
-      if(foundUser && correctPassword) {
-          console.log("logged in user: ")
-          setUsersData(users);
-      // If no user has been found by the inputted name, create a new user
-      } else if(!foundUser) {
-          setIsLoggedIn(false)
-          alert("It looks like you dont have an account, so I'll make one for you")
-          submitLoginData(formData)
-          alert(`You're username is ${formData.username}.`)
-      }
-    }
-
-    // Retrieves all user login data
-    function fetchLoginData() {
-      fetch("https://chat-app-data.onrender.com/users", {
-        method: "GET",
-        headers: {
-            "Content-Type" : "application/json",
-        },
-    })
-        .then((r) => r.json())
-        .then((users) => checkLoginData(users))
-        .catch((error) => console.log(error))
-    }    
-    // Add the submitted data onto the server
-    function submitLoginData(data) {
+    // Add the submitted data onto the server - CREATE
+    async function submitLoginData(data) {
       console.log(data);
-      fetch("https://chat-app-data.onrender.com/users", {
+      await fetch("https://chat-app-data.onrender.com/users", {
         method: "POST",
         headers: {
             "Content-Type" : "application/json",
@@ -80,6 +30,91 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     }
+    function checkLoginData(users) {
+      let foundUser = false;
+      let correctPassword = false;
+      if(formData.username === '' || formData.password === '') {
+        alert("Please enter both username and password");
+        return;
+      }
+      users.forEach((user) => {
+        // First find matching username
+        if(formData.username === user.username) {
+          foundUser = true;
+          console.log('found a matching username')
+          // Then check to see if password is correct
+          if(formData.password === user.password) {
+            console.log('validation succesful!')
+            correctPassword = true;
+            if(formData.avatarURL !== user.avatarURL && formData.avatarURL !== '') {
+              updateUserProfile(formData, user.id)
+              setUsersData(users)
+              console.log("ey?")
+            } else {
+              setLoggedInUser(user)
+              setUsersData(users)
+            }
+            setCurrentUser(user.username)
+            setIsLoggedIn(true)
+            alert(`Welcome, ${user.username}! You may now chat.`)
+            history.push("/")
+          } else {
+            console.log('password is invalid')
+            setIsLoggedIn(false)
+            alert("Wrong password!")
+            return;
+          }
+        }  
+      })
+      // If username and password is correct, log this user in
+      if(foundUser && correctPassword) {
+          console.log(`logged in user: ${currentUser}`)
+          setUsersData(users);
+      // If no user has been found by the inputted name, create a new user
+      } else if(!foundUser && !correctPassword) {
+          alert("It looks like you dont have an account, so I'll make one for you")
+          submitLoginData(formData)
+          alert(`You're username is ${formData.username}.`)
+          setIsLoggedIn(true)
+      }
+    }
+    // Retrieves all user login data - READ
+    async function fetchLoginData() {
+      await fetch("https://chat-app-data.onrender.com/users", {
+        method: "GET",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+    })
+        .then((r) => r.json())
+        .then((users) => {
+          if(!isLoggedIn) checkLoginData(users);
+        })
+        .catch((error) => console.log(error))
+    } 
+    // UPDATE
+    function updateUserProfile(data, id) {
+      fetch(`https://chat-app-data.onrender.com/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          avatarURL : data.avatarURL,
+      })
+    })
+        .then((r) => r.json())
+        .then((user) => {
+          setLoggedInUser(user)
+          console.log(data)
+          fetchLoginData();
+        })
+        .catch((error) => console.log(error))
+    }
+    // Checks to see if user exist
+
+   
+
     // Event listener which keeps track of each time form has been changed
     function handleChange(e) {
         setFormData({
@@ -94,7 +129,6 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
     function handleSubmit(e) {
         e.preventDefault();
         fetchLoginData(formData);
-        history.push("/");
     }
     
     return (
@@ -106,7 +140,6 @@ function Login({setIsLoggedIn, setLoggedInUser, setUsersData}) {
                 type="text" 
                 name="username" 
                 value={FormData.username}
-                // user={FormData.username}
                 onChange={handleChange}
                 placeholder="Username" 
             />

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
-
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
@@ -14,9 +13,28 @@ function Chat({isLoggedIn, loggedInUser}) {
     // Upon loading this page, data for chat will automatically 
     // get fetched from server and appended onto page
     useEffect(() => {
-        getChatData()
+        fetchChatData()
     }, [])
     if(!messages) return "Loading..."
+
+    // Checks if user is logged in
+    if(!isLoggedIn) return <Redirect to="/login" />
+
+    // Fetches message data and sets state of 'messages'
+    async function fetchChatData() {
+        if(!isLoggedIn) return;
+        await fetch("https://chat-app-data.onrender.com/messages", {
+            method: "GET",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+        })
+            .then((r) => r.json())
+            .then((message) => {
+                setMessages(message)             
+            })
+            .catch((error) => console.log(error))
+    }
 
     // DELETE
     const deleteComment = async (id) => {
@@ -41,19 +59,6 @@ function Chat({isLoggedIn, loggedInUser}) {
             .catch((error) => console.log(error))
     }
 
-    // Fetches message data and sets state of 'messages'
-    function getChatData() {
-        fetch("https://chat-app-data.onrender.com/messages", {
-            method: "GET",
-            headers: {
-                "Content-Type" : "application/json",
-            },
-        })
-            .then((r) => r.json())
-            .then((messages) => setMessages(messages))
-            .catch((error) => console.log(error))
-    }
-
     // Event listener which sets the state of the formData each time the input is changed
     function handleChange(e) {
         setFormData({
@@ -65,13 +70,13 @@ function Chat({isLoggedIn, loggedInUser}) {
     // When the form is submitted, a POST request is made the server
     // using data in the comment box and the username/avatar of the current
     // logged in user
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        // If not text was written in the comment field, return
+        // If no text was written in the comment field, return
         if(!formData.comment) return;
 
-        fetch("https://chat-app-data.onrender.com/messages", {
+        await fetch("https://chat-app-data.onrender.com/messages", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,11 +89,9 @@ function Chat({isLoggedIn, loggedInUser}) {
             })
         })
             .then((r) => r.json())
-            .then((newMessage) =>
-                console.log(newMessage),
-            )
-        // After data is sent to server, retrieve new chat data
-        getChatData()
+        // After data is sent to server, retrieve new chat data and clear form box
+        e.target[0].value = '';
+        return fetchChatData()
     }
 
     const messagesToDisplay = messages.map((message) => 
@@ -101,8 +104,6 @@ function Chat({isLoggedIn, loggedInUser}) {
             deleteComment={deleteComment}
         />
     )
-    // Checks if user is logged in
-    if(!isLoggedIn) return <Redirect to="/login" />
 
     return (
         <div className="chatPage">

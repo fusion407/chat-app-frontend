@@ -26,7 +26,7 @@ function App() {
         {/*Requires login*/}
         {/*The chatroom*/}
         <Route exact path="/chat">
-          <Chat isLoggedIn={isLoggedIn} loggedInUser={loggedInUser}/>
+          <Chat isLoggedIn={isLoggedIn} userData={allUsersData} loggedInUser={loggedInUser}/>
         </Route>
 
         {/*Requires login*/}
@@ -37,7 +37,7 @@ function App() {
 
         {/*User is redirected here until a profile has been logged in / created.*/}
         <Route exact path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} setUsersData={setUsersData}/>
+          <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} setUsersData={setUsersData}/>
         </Route>
 
         {/*Homepage*/}

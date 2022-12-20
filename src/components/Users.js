@@ -16,13 +16,11 @@ function Users({isLoggedIn, userData}) {
   if(!isLoggedIn) return <Redirect to="/login" />
 
   const usersToDisplay = users.map((user) => 
-  <ul>
-    <User 
-      key={user.id}
-      name={user.username}
-      avatar={user.avatarURL}
+      <User 
+        key={user.id}
+        name={user.username}
+        avatar={user.avatarURL}
    />
-  </ul>
   )
     return (
         <div className="usersBox">

@@ -28,23 +28,20 @@ div.chatBox {
 
 .usersBox {
   display: flex;
+  background-color: #f5eec2;
   margin-top: 1em;
   padding-top: 1em;
   padding-right: 1em;
   text-align: center;
   border-style: solid;
-  border-color: #060709;
+  border-color: #037f11bf;
   flex-direction: row;
-  align-items: flex-end;
   flex-wrap: wrap;
 }
 .userBox {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-end;
-  background-color: #a9c25d;
-
+  flex-direction: column-reverse;
+  align-items: center;
 }
 .avatarImage {
   display: flex;
