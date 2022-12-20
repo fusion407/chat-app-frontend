@@ -75,7 +75,6 @@ function Chat({isLoggedIn, loggedInUser}) {
             })
         })
             .then((r) => r.json())
-        // After data is sent to server, retrieve new chat data and clear form box
         e.target[0].value = '';
         fetchChatData()
     }

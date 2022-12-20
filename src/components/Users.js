@@ -6,13 +6,11 @@ function Users({isLoggedIn, userData}) {
 
   const [users, setUsers] = useState([]);
 
-  // On page load, set 'users' state to 'userData's username and avatarURL
   useEffect(() => {
     setUsers(userData)
   }, [userData])
   if(!users) return "Loading..."
 
-  // Checks to see if user is logged in
   if(!isLoggedIn) return <Redirect to="/login" />
 
   const usersToDisplay = users.map((user) => 

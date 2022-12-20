@@ -62,11 +62,9 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
           }
         }  
       })
-      // If username and password is correct, log this user in
       if(foundUser && correctPassword) {
           console.log(`logged in user: ${currentUser}`)
           setUsersData(users);
-      // If no user has been found by the inputted name, create a new user
       } else if(!foundUser && !correctPassword) {
           setIsLoggedIn(false)
           alert("It looks like you dont have an account, so I'll make one for you")
@@ -75,7 +73,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
           history.push('/')
       }
     }
-    // Retrieves all user login data - READ
     async function fetchLoginData() {
       await fetch("https://chat-app-data.onrender.com/users", {
         method: "GET",
@@ -89,7 +86,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     } 
-    // UPDATE
     function updateUserProfile(data, id) {
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
         method: "PATCH",
@@ -108,21 +104,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         })
         .catch((error) => console.log(error))
     }
-    // Checks to see if user exist
-
-   
-
-    // Event listener which keeps track of each time form has been changed
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     }
-    // Event listener which handles form submission
-    // Fetches user login data and checks submitted credentials
-    // A matching username but wrong password will alert user of wrong password
-    // A new username is automatically submitted as new account
     function handleSubmit(e) {
         e.preventDefault();
         fetchLoginData(formData);

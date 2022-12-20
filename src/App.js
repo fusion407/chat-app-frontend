@@ -22,25 +22,18 @@ function App() {
     <div>
       <NavBar />
       <Switch>
-
-        {/*Requires login*/}
-        {/*The chatroom*/}
         <Route exact path="/chat">
           <Chat isLoggedIn={isLoggedIn} userData={allUsersData} loggedInUser={loggedInUser}/>
         </Route>
 
-        {/*Requires login*/}
-        {/*Displays a list of each user with their respected avatar image*/}
         <Route exact path="/users">
           <Users isLoggedIn={isLoggedIn} userData={allUsersData}/>
         </Route>
 
-        {/*User is redirected here until a profile has been logged in / created.*/}
         <Route exact path="/login">
           <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setLoggedInUser={setLoggedInUser} setUsersData={setUsersData}/>
         </Route>
 
-        {/*Homepage*/}
         <Route exact path="/">
           <Home />
         </Route>
