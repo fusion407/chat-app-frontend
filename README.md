@@ -5,6 +5,7 @@ This is a simple front-end project using ReactJS.
 The backend repository will be found here: https://github.com/fusion407/chat-app-backend
 
 The backend is hosted by Onrender: https://chat-app-data.onrender.com/
+
 The front end is on Netlify: https://fusion407-chat-app.netlify.app/
 
 In order to fulfill this projects requirements I must:
