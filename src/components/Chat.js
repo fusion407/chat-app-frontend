@@ -10,17 +10,13 @@ function Chat({isLoggedIn, loggedInUser}) {
         username : '',
         comment : '',
     })
-    // Upon loading this page, data for chat will automatically 
-    // get fetched from server and appended onto page
     useEffect(() => {
         fetchChatData()
     }, [])
     if(!messages) return "Loading..."
 
-    // Checks if user is logged in
     if(!isLoggedIn) return <Redirect to="/login" />
 
-    // Fetches message data and sets state of 'messages'
     async function fetchChatData() {
         await fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
@@ -34,8 +30,6 @@ function Chat({isLoggedIn, loggedInUser}) {
             })
             .catch((error) => console.log(error))
     }
-
-    // DELETE
     const deleteComment = async (id) => {
         console.log(id)
         fetch(`https://chat-app-data.onrender.com/messages/${id}`, {
@@ -57,22 +51,15 @@ function Chat({isLoggedIn, loggedInUser}) {
             })  
             .catch((error) => console.log(error))
     }
-
-    // Event listener which sets the state of the formData each time the input is changed
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     }
-
-    // When the form is submitted, a POST request is made the server
-    // using data in the comment box and the username/avatar of the current
-    // logged in user
     async function handleSubmit(e) {
         e.preventDefault();
 
-        // If no text was written in the comment field, return
         if(!formData.comment) return;
 
         await fetch("https://chat-app-data.onrender.com/messages", {

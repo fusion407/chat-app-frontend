@@ -9,7 +9,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         password: '',
         avatarURL: '',
     });
-    // Add the submitted data onto the server - CREATE
     async function submitLoginData(data) {
       console.log(data);
       await fetch("https://chat-app-data.onrender.com/users", {
@@ -38,18 +37,15 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         return;
       }
       users.forEach((user) => {
-        // First find matching username
         if(formData.username === user.username) {
           foundUser = true;
           console.log('found a matching username')
-          // Then check to see if password is correct
           if(formData.password === user.password) {
             console.log('validation succesful!')
             correctPassword = true;
             if(formData.avatarURL !== user.avatarURL && formData.avatarURL !== '') {
               updateUserProfile(formData, user.id)
               setUsersData(users)
-              console.log("ey?")
             } else {
               setLoggedInUser(user)
               setUsersData(users)
@@ -72,10 +68,11 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
           setUsersData(users);
       // If no user has been found by the inputted name, create a new user
       } else if(!foundUser && !correctPassword) {
+          setIsLoggedIn(false)
           alert("It looks like you dont have an account, so I'll make one for you")
           submitLoginData(formData)
-          alert(`You're username is ${formData.username}.`)
-          setIsLoggedIn(true)
+          alert(`You're username is ${formData.username}. You may now log in.`)
+          history.push('/')
       }
     }
     // Retrieves all user login data - READ
