@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
     const history = useHistory();
-    const [currentUser, setCurrentUser] = useState('')
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -39,23 +38,16 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
       users.forEach((user) => {
         if(formData.username === user.username) {
           foundUser = true;
-          console.log('found a matching username')
           if(formData.password === user.password) {
             console.log('validation succesful!')
             correctPassword = true;
             if(formData.avatarURL !== user.avatarURL && formData.avatarURL !== '') {
               updateUserProfile(formData, user.id)
-              setUsersData(users)
-            } else {
-              setLoggedInUser(user)
-              setUsersData(users)
             }
-            setCurrentUser(user.username)
-            setIsLoggedIn(true)
+            setLoggedInUser(user)
             alert(`Welcome, ${user.username}! You may now chat.`)
             history.push("/")
           } else {
-            console.log('password is invalid')
             setIsLoggedIn(false)
             alert("Wrong password!")
             return;
@@ -63,8 +55,8 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         }  
       })
       if(foundUser && correctPassword) {
-          console.log(`logged in user: ${currentUser}`)
           setUsersData(users);
+          setIsLoggedIn(true)
       } else if(!foundUser && !correctPassword) {
           setIsLoggedIn(false)
           alert("It looks like you dont have an account, so I'll make one for you")
@@ -99,7 +91,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         .then((r) => r.json())
         .then((user) => {
           setLoggedInUser(user)
-          console.log(data)
+          setIsLoggedIn(true);
           fetchLoginData();
         })
         .catch((error) => console.log(error))

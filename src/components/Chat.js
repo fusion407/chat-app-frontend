@@ -4,14 +4,15 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Message from './Message'
 
-function Chat({isLoggedIn, loggedInUser}) {
-    const [messages, setMessages] = useState([]);
+function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     const [formData, setFormData] = useState({
         username : '',
         comment : '',
     })
     useEffect(() => {
         fetchChatData()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     if(!messages) return "Loading..."
 
@@ -75,8 +76,10 @@ function Chat({isLoggedIn, loggedInUser}) {
             })
         })
             .then((r) => r.json())
-        e.target[0].value = '';
-        fetchChatData()
+            .then(() => {
+                e.target[0].value = '';
+                return fetchChatData()
+            })
     }
 
     const messagesToDisplay = messages.map((message) => 

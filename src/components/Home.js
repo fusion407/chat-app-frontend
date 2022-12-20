@@ -11,7 +11,7 @@ function Home() {
             <p>
                 The purpose of this project is to learn React, 
                 and using it to perform basic CRUD operations 
-                using Node.js.
+                using Json-server.
             </p>
             <p>
                 In order to create a new profile, make an attempt 
@@ -25,7 +25,7 @@ function Home() {
             </p>
             <p>
                 If you'd rather test one of the pre-made profiles, 
-                use these credentials:
+                use this login:
             </p>
             <p>username: Zuko  -  password:  zukohere</p>
         </div>
