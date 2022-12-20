@@ -74,7 +74,8 @@ button.deleteButton {
   border-style: solid;
   padding-bottom: 1em;
   padding-top: 1em;
-  background-color:#788585;
+  color : #171616;
+  background-color:#6F6866;
 }
 .newComment {
   display: flex;
