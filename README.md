@@ -1,9 +1,11 @@
 Welcome to Chat-App!
 
-This is a simple learning project using ReactJS for my frontend, and json-server for the backend.
+This is a simple front-end project using ReactJS.
 
 The backend repository will be found here: https://github.com/fusion407/chat-app-backend
-The backend server is hosted by onrender
+
+The backend is hosted by Onrender: https://chat-app-data.onrender.com/
+The front end is on Netlify: https://fusion407-chat-app.netlify.app/
 
 In order to fulfill this projects requirements I must:
 
@@ -13,14 +15,14 @@ In order to fulfill this projects requirements I must:
 4) Use json-server to create a RESTful API
 5) Add some styling
 
-In total I have 7 React components; Chat, Home, Login, Message, NavBar, User, Users, are all children to the main App.js component.
+In total I have 7 React components; Home, Chat, Message, NavBar, User, Users, Login.
 
-There are 4 different client-side routes leading to
-    - /chat     -    the chat room
-    - /users    -    displays all users
-    - /login    -    login page
-    - /         -    home page
+There are 4 different client-side routes: 
+/chat  -  chatroom  
+/users  -  all users  
+/login  -  login page  
+/  -  Home page
 
-Json-server is being used to POST, GET, and DELETE data between the submitted forms and the server
+Json-server is being used to make POST, GET, PATCH, and DELETE requests; fetching data from Chat, Login, and Users components and updating each props state accordingly.
 
-Finally, styling was done mostly done by scratch CSS, but bootstrap was used to help put together the chatbox.
+Finally, styling was done mostly done by vanilla CSS, but bootstrap was also used a bit.
