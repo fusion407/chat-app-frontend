@@ -22,7 +22,6 @@ function Chat({isLoggedIn, loggedInUser}) {
 
     // Fetches message data and sets state of 'messages'
     async function fetchChatData() {
-        if(!isLoggedIn) return;
         await fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
             headers: {
@@ -91,7 +90,7 @@ function Chat({isLoggedIn, loggedInUser}) {
             .then((r) => r.json())
         // After data is sent to server, retrieve new chat data and clear form box
         e.target[0].value = '';
-        return fetchChatData()
+        fetchChatData()
     }
 
     const messagesToDisplay = messages.map((message) => 
