@@ -1,5 +1,4 @@
 import React from "react"
-
 import { NavLink } from "react-router-dom";
 const linkStyles = {
     display: "inline-flex",
@@ -9,7 +8,7 @@ const linkStyles = {
     width: "100px",
     padding: "1em",
     margin: "2em 6px 6px",
-    background: "#73a24e",
+    background: "#9CAEA9",
     textDecoration: "none",
     color: "black",
   };
@@ -21,7 +20,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#a9c25d",
+            background: "#788585",
           }}
         >
           Home
@@ -31,7 +30,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#a9c25d",
+            background: "#788585",
           }}
         >
           Chat
@@ -41,7 +40,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#a9c25d",
+            background: "#788585",
           }}
         >
           Users
@@ -51,7 +50,7 @@ function NavBar() {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#a9c25d",
+            background: "#788585",
           }}
         >
           Login

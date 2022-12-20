@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 body {
-  background-color: #f5eec2;
+  background-color: #CCDAD1;
   display: flex;
   font-family: 'Josefin Sans', cursive;
   align-items: center;
   text-align: center;
   justify-content: center;
-  color: #39395f;
+  color: #38302E;
 }
 
 .App {
   display: flex;
   text-align: center;
   justify-content: center;
-  background-color: #416a59;
+  background-color: #788585;
   padding-bottom: 1em;
 }
 div.chatBox {
@@ -28,13 +28,13 @@ div.chatBox {
 
 .usersBox {
   display: flex;
-  background-color: #f5eec2;
+  background-color: #788585;
   margin-top: 1em;
   padding-top: 1em;
   padding-right: 1em;
   text-align: center;
   border-style: solid;
-  border-color: #037f11bf;
+  border-color: #38302E;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -49,18 +49,18 @@ div.chatBox {
   height: 5rem;
   width: 6rem;
 }
-.messageBox {
-  color: #416a59;
-}
+/* .messageBox {
+  color: #38302E;
+} */
 button {
-  background-color: #73a24e;
+  background-color: #9CAEA9;
   margin-left : 2em;
 }
 .submitButton {
   margin-top: 1em;
 }
 button:hover {
-  background-color: #a9c25d;
+  background-color: #CCDAD1;
 
 }
 button.deleteButton {
@@ -70,7 +70,7 @@ button.deleteButton {
 .homeScreen {
   margin-top : 2em;
   border-style: solid;
-  background-color: #a9c25d;
+  background-color: #788585;
   padding: 1em 1em 1em 1em;
 }
 .loginScreen {
@@ -78,7 +78,7 @@ button.deleteButton {
   border-style: solid;
   padding-bottom: 1em;
   padding-top: 1em;
-  background-color:#a9c25d;
+  background-color:#788585;
 }
 .newComment {
   display: flex;

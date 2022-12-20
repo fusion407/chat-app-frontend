@@ -107,8 +107,8 @@ function Chat({isLoggedIn, loggedInUser}) {
     return (
         <div className="chatPage">
             <div className="chatBox">
-                    <Card style={{ background: "#39395f", width: '25rem' }}>
-                        <ListGroup style={{background: "#a9c25d", width: 'auto'}}variant="flush">
+                    <Card style={{ background: "#9CAEA9", width: '25rem' }}>
+                        <ListGroup style={{background: "#6F6866", width: 'auto'}}variant="flush">
                             {messagesToDisplay}
                         </ListGroup>
                     </Card>
