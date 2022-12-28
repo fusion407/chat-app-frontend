@@ -40,6 +40,7 @@ function App() {
             isLoggedIn={isLoggedIn} 
             setIsLoggedIn={setIsLoggedIn} 
             setLoggedInUser={setLoggedInUser} 
+            users={allUsersData}
             setUsersData={setUsersData}
           />
         </Route>

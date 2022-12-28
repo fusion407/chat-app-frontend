@@ -10,16 +10,7 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
         comment : '',
     })
     useEffect(() => {
-        fetchChatData()
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    if(!messages) return "Loading..."
-
-    if(!isLoggedIn) return <Redirect to="/login" />
-
-    async function fetchChatData() {
-        await fetch("https://chat-app-data.onrender.com/messages", {
+        fetch("https://chat-app-data.onrender.com/messages", {
             method: "GET",
             headers: {
                 "Content-Type" : "application/json",
@@ -30,7 +21,12 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
                 setMessages(message)             
             })
             .catch((error) => console.log(error))
-    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [messages])
+    if(!messages) return "Loading..."
+
+    if(!isLoggedIn) return <Redirect to="/login" />
+
     const deleteComment = async (id) => {
         console.log(id)
         fetch(`https://chat-app-data.onrender.com/messages/${id}`, {
@@ -76,9 +72,8 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             })
         })
             .then((r) => r.json())
-            .then(() => {
-                e.target[0].value = '';
-                return fetchChatData()
+            .then((message) => {
+                setMessages((messages) => [...messages, message])
             })
     }
 

@@ -1,13 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
+function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         avatarURL: '',
     });
+
+    useEffect(() => {
+      fetch("https://chat-app-data.onrender.com/users", {
+        method: "GET",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+    })
+        .then((r) => r.json())
+        .then((users) => {
+          setUsersData(users);
+        })
+        .catch((error) => console.log(error))
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     async function submitLoginData(data) {
       console.log(data);
@@ -24,13 +39,14 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
       })
     })
         .then((r) => r.json())
-        .then((users) => {
-          setLoggedInUser(users);
+        .then((user) => {
+          setLoggedInUser(user);
+          setUsersData((user) => [...users, user])
         })
         .catch((error) => console.log(error))
     }
 
-    function checkLoginData(users) {
+    function checkLoginData() {
       let foundUser = false;
       let correctPassword = false;
       if(formData.username === '' || formData.password === '') {
@@ -68,19 +84,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
       }
     }
 
-    async function fetchLoginData() {
-      await fetch("https://chat-app-data.onrender.com/users", {
-        method: "GET",
-        headers: {
-            "Content-Type" : "application/json",
-        },
-    })
-        .then((r) => r.json())
-        .then((users) => {
-          if(!isLoggedIn) checkLoginData(users);
-        })
-        .catch((error) => console.log(error))
-    } 
 
     function updateUserProfile(data, id) {
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
@@ -96,7 +99,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
         .then((user) => {
           setLoggedInUser(user)
           setIsLoggedIn(true);
-          fetchLoginData();
+          // update users state
         })
         .catch((error) => console.log(error))
     }
@@ -110,7 +113,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, setUsersData}) {
     
     function handleSubmit(e) {
         e.preventDefault();
-        fetchLoginData(formData);
+        checkLoginData(e);
     }
     
     return (
