@@ -1,19 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
 import User from "./User"
 
-function Users({isLoggedIn, userData}) {
-
-  const [users, setUsers] = useState([]);
+function Users({isLoggedIn, allUsersData, setUsersData}) {
 
   useEffect(() => {
-    setUsers(userData)
-  }, [userData])
-  if(!users) return "Loading..."
+    fetch("https://chat-app-data.onrender.com/users", {
+      method: "GET",
+      headers: {
+          "Content-Type" : "application/json",
+      },
+  })
+      .then((r) => r.json())
+      .then((users) => {
+        setUsersData(users);
+      })
+      .catch((error) => console.log(error))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allUsersData])
+  if(!allUsersData) return "Loading..."
 
   if(!isLoggedIn) return <Redirect to="/login" />
 
-  const usersToDisplay = users.map((user) => 
+  const usersToDisplay = allUsersData.map((user) => 
       <User 
         key={user.id}
         name={user.username}
@@ -22,7 +31,7 @@ function Users({isLoggedIn, userData}) {
   )
     return (
         <div className="usersBox">
-          {users ? usersToDisplay : "No users"}
+          {allUsersData ? usersToDisplay : "No users"}
         </div>
     );
   }

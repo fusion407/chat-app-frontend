@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [allUsersData, setUsersData] = useState({})
+  const [allUsersData, setUsersData] = useState([])
   const [loggedInUser, setLoggedInUser] = useState({})
   const [messages, setMessages] = useState([]);
 
@@ -21,7 +21,6 @@ function App() {
         <Route exact path="/chat">
           <Chat 
             isLoggedIn={isLoggedIn} 
-            userData={allUsersData} 
             loggedInUser={loggedInUser}
             messages={messages}
             setMessages={setMessages}
@@ -31,7 +30,9 @@ function App() {
         <Route exact path="/users">
           <Users 
             isLoggedIn={isLoggedIn} 
-            userData={allUsersData}
+            setUsersData={setUsersData}
+            allUsersData={allUsersData} 
+
           />
         </Route>
 
@@ -40,7 +41,7 @@ function App() {
             isLoggedIn={isLoggedIn} 
             setIsLoggedIn={setIsLoggedIn} 
             setLoggedInUser={setLoggedInUser} 
-            users={allUsersData}
+            allUsersData={allUsersData}
             setUsersData={setUsersData}
           />
         </Route>

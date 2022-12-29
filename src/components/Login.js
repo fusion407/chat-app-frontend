@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}) {
+function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
         username: '',
@@ -21,7 +21,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
           setUsersData(users);
         })
         .catch((error) => console.log(error))
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     async function submitLoginData(data) {
@@ -41,7 +41,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
         .then((r) => r.json())
         .then((user) => {
           setLoggedInUser(user);
-          setUsersData((user) => [...users, user])
+          setUsersData((user) => [...allUsersData, user])
         })
         .catch((error) => console.log(error))
     }
@@ -53,7 +53,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
         alert("Please enter both username and password");
         return;
       }
-      users.forEach((user) => {
+      allUsersData.forEach((user) => {
         if(formData.username === user.username) {
           foundUser = true;
           if(formData.password === user.password) {
@@ -63,6 +63,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
               updateUserProfile(formData, user.id)
             }
             setLoggedInUser(user)
+            setIsLoggedIn(true)
             alert(`Welcome, ${user.username}! You may now chat.`)
             history.push("/")
           } else {
@@ -72,10 +73,8 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
           }
         }  
       })
-      if(foundUser && correctPassword) {
-          setUsersData(users);
-          setIsLoggedIn(true)
-      } else if(!foundUser && !correctPassword) {
+      if(!foundUser && !correctPassword) {
+          setLoggedInUser("")
           setIsLoggedIn(false)
           alert("It looks like you dont have an account, so I'll make one for you")
           submitLoginData(formData)
@@ -84,7 +83,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
       }
     }
 
-
+    function handleUpdateUser(updatedUser) {
+      const updateUser = allUsersData.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      );
+      setUsersData(updateUser)
+    }
     function updateUserProfile(data, id) {
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
         method: "PATCH",
@@ -96,11 +100,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
       })
     })
         .then((r) => r.json())
-        .then((user) => {
-          setLoggedInUser(user)
-          setIsLoggedIn(true);
-          // update users state
-        })
+        .then(handleUpdateUser)
         .catch((error) => console.log(error))
     }
 
@@ -114,6 +114,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
     function handleSubmit(e) {
         e.preventDefault();
         checkLoginData(e);
+    }
+    function handleLogout(e) {
+      e.preventDefault();
+      setLoggedInUser("")
+      setIsLoggedIn(false);
+      history.push("/")
     }
     
     return (
@@ -150,6 +156,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, users, setUsersData}
           </div>
           <button type="submit">Login</button>
         </form>
+        <button onClick={handleLogout}>Logout</button>
         </div>
     );
   }
