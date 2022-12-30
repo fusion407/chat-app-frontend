@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
+function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData, fetchUserData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
         username: '',
@@ -9,21 +9,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         avatarURL: '',
     });
 
-    useEffect(() => {
-      fetch("https://chat-app-data.onrender.com/users", {
-        method: "GET",
-        headers: {
-            "Content-Type" : "application/json",
-        },
-    })
-        .then((r) => r.json())
-        .then((users) => {
-          setUsersData(users);
-        })
-        .catch((error) => console.log(error))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+  
     async function submitLoginData(data) {
       console.log(data);
       await fetch("https://chat-app-data.onrender.com/users", {
@@ -56,6 +42,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       allUsersData.forEach((user) => {
         if(formData.username === user.username) {
           foundUser = true;
+          console.log("found user")
           if(formData.password === user.password) {
             console.log('validation succesful!')
             correctPassword = true;
@@ -83,12 +70,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       }
     }
 
-    function handleUpdateUser(updatedUser) {
-      const updateUser = allUsersData.map((user) =>
-        user.id === updatedUser.id ? updatedUser : user
-      );
-      setUsersData(updateUser)
-    }
+
     function updateUserProfile(data, id) {
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
         method: "PATCH",
@@ -100,11 +82,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       })
     })
         .then((r) => r.json())
-        .then(handleUpdateUser)
+        .then(() => onHandleUpdateUser)
         .catch((error) => console.log(error))
     }
 
     function handleChange(e) {
+        e.preventDefault();
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -113,6 +96,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
     
     function handleSubmit(e) {
         e.preventDefault();
+        fetchUserData();
         checkLoginData(e);
     }
     function handleLogout(e) {

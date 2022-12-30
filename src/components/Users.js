@@ -1,28 +1,18 @@
-import React, {useEffect} from 'react'
 import { Redirect } from 'react-router-dom'
 import User from "./User"
 
-function Users({isLoggedIn, allUsersData, setUsersData}) {
+function Users({isLoggedIn, allUsersData}) {
 
-  useEffect(() => {
-    fetch("https://chat-app-data.onrender.com/users", {
-      method: "GET",
-      headers: {
-          "Content-Type" : "application/json",
-      },
-  })
-      .then((r) => r.json())
-      .then((users) => {
-        setUsersData(users);
-      })
-      .catch((error) => console.log(error))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allUsersData])
-  if(!allUsersData) return "Loading..."
+//   useEffect(() => {
+//     setTimeout(() => {
+//         fetchUserData();
+//     }, 2000);
+// }, [])
+  // if(!allUsersData) return "Loading..."
 
   if(!isLoggedIn) return <Redirect to="/login" />
-
-  const usersToDisplay = allUsersData.map((user) => 
+  const allUsersArray = allUsersData;
+  const usersToDisplay = allUsersArray.map((user) => 
       <User 
         key={user.id}
         name={user.username}
