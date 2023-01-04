@@ -4,37 +4,20 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
 
-function Chat({isLoggedIn, loggedInUser, messages, setMessages, onHandleUpdateUser}) {
+function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData, setUsersData}) {
     const [formData, setFormData] = useState({
         username : '',
         comment : '',
     })
 
     useEffect(() => {
-        console.log("useEffect running in chat...")
-        // setTimeout(() => {
-        //     onHandleUpdateUser();
-        // }, 2000);
-    }, [messages])
+        console.log("updating message data...")
+        setMessages(messages)
+        setUsersData(allUsersData)
+    }, [messages, allUsersData])
     if(!messages) return "Loading..."
 
     if(!isLoggedIn) return <Redirect to="/login" />
-    // const fetchMessageData = async () => {
-    //     console.log("fetching message")
-    //     await fetch("https://chat-app-data.onrender.com/messages", {
-    //       method: "GET",
-    //       headers: {
-    //           "Content-Type" : "application/json",
-    //       },
-    //   })
-    //     .then((r) => r.json())
-    //     .then((message) => {
-    //         setMessages(message)  
-    //     })
-    //     .catch((error) => {
-    //         console.log(error)
-    //     })
-    //   }
 
     const deleteComment = async (id) => {
         console.log(id)
@@ -84,18 +67,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages, onHandleUpdateUs
                 setMessages((messages) => [...messages, message])
             })
     }
-
-    // const messagesToDisplay = messages.map((message) => 
-    //     <Message 
-    //         id={message.id}
-    //         key={message.id}
-    //         name={message.name}
-    //         comment={message.comment}
-    //         avatarURL={message.avatarURL}
-    //         deleteComment={deleteComment}
-    //     />
-    // )
-
     return (
         <div className="chatPage">
             <div className="chatBox">

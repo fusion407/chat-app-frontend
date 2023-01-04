@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData, fetchUserData}) {
+function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData, fetchUserData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
         avatarURL: '',
     });
+    useEffect(() => {
+      console.log("updating user data...")
+  }, [])
+  if(!allUsersData) return "Loading..."
 
-  
-    async function submitLoginData(data) {
+
+  async function submitLoginData(data) {
       console.log(data);
       await fetch("https://chat-app-data.onrender.com/users", {
         method: "POST",
@@ -20,7 +24,6 @@ function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData
         body: JSON.stringify({
           key : data.id,
           username : data.username,
-          password : data.password,
           avatarURL : data.avatarURL,
       })
     })
@@ -31,43 +34,50 @@ function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData
         })
         .catch((error) => console.log(error))
     }
-
-    function checkLoginData() {
+    function handleCreateAccount() {
       let foundUser = false;
-      let correctPassword = false;
-      if(formData.username === '' || formData.password === '') {
-        alert("Please enter both username and password");
+      allUsersData.forEach((user) => {
+        if(formData.username === user.username) {
+          alert("Account already exists")
+          foundUser = true;
+        }
+      })
+      if(foundUser) {
+        return;
+      } else {
+        submitLoginData(formData)
+        alert("Created new user.")
+        history.push("/")
+      }
+    }
+    function checkLoginData() {
+      fetchUserData();
+      if(formData.username === '') {
+        alert("Please enter a username");
         return;
       }
       allUsersData.forEach((user) => {
         if(formData.username === user.username) {
-          foundUser = true;
-          console.log("found user")
-          if(formData.password === user.password) {
-            console.log('validation succesful!')
-            correctPassword = true;
+          if(!user.username) {
+            alert("Account not found")
+            return;
+          } else {
             if(formData.avatarURL !== user.avatarURL && formData.avatarURL !== '') {
               updateUserProfile(formData, user.id)
+              alert("Updated user profile picture, please log in again.")
+              setIsLoggedIn(false)
+              setLoggedInUser('')
+              history.push("/")
+              return;
             }
-            setLoggedInUser(user)
-            setIsLoggedIn(true)
-            alert(`Welcome, ${user.username}! You may now chat.`)
-            history.push("/")
-          } else {
-            setIsLoggedIn(false)
-            alert("Wrong password!")
-            return;
           }
+          setLoggedInUser(user)
+          setIsLoggedIn(true)
+          alert(`Welcome, ${user.username}! You may now chat.`)
+          history.push("/")
+          return;
         }  
       })
-      if(!foundUser && !correctPassword) {
-          setLoggedInUser("")
-          setIsLoggedIn(false)
-          alert("It looks like you dont have an account, so I'll make one for you")
-          submitLoginData(formData)
-          alert(`You're username is ${formData.username}. You may now log in.`)
-          history.push('/')
-      }
     }
 
 
@@ -93,10 +103,20 @@ function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData
             [e.target.name]: e.target.value,
         });
     }
+    function handleChangeAvatar(e) {
+      e.preventDefault();
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+    });
+    }
     
     function handleSubmit(e) {
         e.preventDefault();
-        fetchUserData();
+        setUsersData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
         checkLoginData(e);
     }
     function handleLogout(e) {
@@ -120,27 +140,22 @@ function Login({onHandleUpdateUser, setIsLoggedIn, setLoggedInUser, allUsersData
             />
           </div>
           <div>
-            <input 
-                type="password" 
-                name="password" 
-                value={FormData.password}
-                onChange={handleChange}
-                placeholder="Password" 
-            />
-          </div>
-          <div>
             <p>Profile Picture:</p>
             <input 
                 type="text" 
                 name="avatarURL" 
                 value={FormData.avatarURL}
-                onChange={handleChange}
+                onChange={handleChangeAvatar}
                 placeholder="URL" 
             />
           </div>
           <button type="submit">Login</button>
         </form>
+        {isLoggedIn ? 
         <button onClick={handleLogout}>Logout</button>
+        :
+        <button onClick={handleCreateAccount}>Create Account</button>
+        }
         </div>
     );
   }

@@ -5,7 +5,7 @@ function Home() {
         <div className="homeScreen">
             <h1>Welcome to Chat-App!</h1>
             <p>
-                This is a single page application coded with 
+                This is a single page application created with 
                 ReactJS.
             </p>
             <p>
@@ -14,16 +14,11 @@ function Home() {
                 using Json-server.
             </p>
             <p>
-                In order to create a new profile, make an attempt 
-                to login and please include the URL to the avatar 
-                photo you would like to use. In order to update your 
-                profile picture, log out by refreshing the page 
-                and log in with the new URL.
+                In order to create a new profile, input your username
+                and click 'Create Account'. You may then log in and then
+                go to the Forum page to begin chatting!
             </p>
-            <p>
-                *** This is a front end project, so don't input any 
-                credentials you often use. ***
-            </p>
+
             <p>
                 If you'd rather test one of the pre-made profiles, 
                 use this login:

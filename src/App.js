@@ -15,23 +15,25 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    console.log("running useEffect...")
+    console.log("initializing data...")
     handleFetchUserData();
     handleFetchMessages();
   }, [])
 
+  // update user
   function handleUpdateUser(updatedUser) {
     const updateUser = allUsersData.map((user) =>
       user.id === updatedUser.id ? updatedUser : user     
     );
     console.log(updateUser)
+    
     return setUsersData(updateUser)
   }
 
 
   // fetch messages
   const handleFetchMessages = async () => {
-    console.log("fetching message")
+    console.log("fetching message data...")
     await fetch("https://chat-app-data.onrender.com/messages", {
       method: "GET",
       headers: {
@@ -61,6 +63,7 @@ function App() {
       })
       .catch((error) => console.log(error))
   }
+
   return (
     <div>
       <NavBar />
@@ -71,6 +74,8 @@ function App() {
             loggedInUser={loggedInUser}
             messages={messages}
             setMessages={setMessages}
+            allUsersData={allUsersData}
+            setUsersData={setUsersData}
             onUpdateMessage={handleFetchMessages}
           />
         </Route>
@@ -79,6 +84,7 @@ function App() {
           <Users 
             isLoggedIn={isLoggedIn} 
             allUsersData={allUsersData}
+            setUsersData={setUsersData}
             fetchUserData={handleFetchUserData} 
           />
         </Route>
@@ -86,6 +92,7 @@ function App() {
         <Route exact path="/login">
           <Login 
             onHandleUpdateUser={handleUpdateUser} 
+            isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn} 
             setLoggedInUser={setLoggedInUser} 
             allUsersData={allUsersData}

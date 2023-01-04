@@ -34,7 +34,7 @@ function NavBar() {
             background: "#788585",
           }}
         >
-          Chat
+          Forum
         </NavLink>
         <NavLink
           to="/users"
