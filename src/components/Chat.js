@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
 
-function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData, setUsersData}) {
+function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData}) {
     const [formData, setFormData] = useState({
         username : '',
         comment : '',
@@ -12,8 +12,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData, se
 
     useEffect(() => {
         console.log("updating message data...")
-        setMessages(messages)
-        setUsersData(allUsersData)
     }, [messages, allUsersData])
     if(!messages) return "Loading..."
 

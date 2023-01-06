@@ -75,7 +75,6 @@ function App() {
             messages={messages}
             setMessages={setMessages}
             allUsersData={allUsersData}
-            setUsersData={setUsersData}
             onUpdateMessage={handleFetchMessages}
           />
         </Route>
