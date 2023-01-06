@@ -10,11 +10,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData}) {
         comment : '',
     })
 
-    useEffect(() => {
-        console.log("updating message data...")
-    }, [messages, allUsersData])
-    if(!messages) return "Loading..."
-
     if(!isLoggedIn) return <Redirect to="/login" />
 
     const deleteComment = async (id) => {

@@ -13,7 +13,7 @@ const linkStyles = {
     textDecoration: "none",
     color: "black",
   };
-function NavBar() {
+function NavBar(props) {
     return (
       <div>
         <NavLink
@@ -56,6 +56,9 @@ function NavBar() {
         >
           Login
         </NavLink>
+        <h3>
+          {!props.isLoggedIn ? 'Logged out' : 'Logged in: ' + props.loggedInUser.username}
+        </h3>
       </div>
     );
   }

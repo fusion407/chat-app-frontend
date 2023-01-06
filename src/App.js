@@ -11,7 +11,11 @@ import './App.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allUsersData, setUsersData] = useState([])
-  const [loggedInUser, setLoggedInUser] = useState({})
+  const [loggedInUser, setLoggedInUser] = useState({
+    id : '',
+    username : '',
+    avatarURL : '',
+  })
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ function App() {
       user.id === updatedUser.id ? updatedUser : user     
     );
     console.log(updateUser)
-    
+    setLoggedInUser(updateUser)
     return setUsersData(updateUser)
   }
 
@@ -66,7 +70,7 @@ function App() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} loggedInUser={loggedInUser}/>
       <Switch>
         <Route exact path="/chat">
           <Chat 
