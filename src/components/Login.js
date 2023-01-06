@@ -8,6 +8,7 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, setLoggedInUser, 
         password: '',
         avatarURL: '',
     });
+    
     useEffect(() => {
       console.log("updating user data...")
   }, [])

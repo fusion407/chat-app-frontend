@@ -20,13 +20,13 @@ function Home() {
             </p>
             <p>
                 Additionally, if you would like to update your profile picture, simply login as normal
-                with the new image URL, then log in again.
+                with the new image URL, then log back in again.
             </p>
             <p>
                 If you'd rather test one of the pre-made profiles, 
                 use this login:
             </p>
-            <p>username: Zuko  -  password:  zukohere</p>
+            <p>username: Zuko</p>
         </div>
     )
 }
