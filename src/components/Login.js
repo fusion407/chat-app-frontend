@@ -138,7 +138,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       <div className="loginScreen">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='loginForm'>
             <input 
                 type="text" 
                 name="username" 
@@ -147,14 +147,13 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
                 placeholder="Username" 
             />
           </div>
-          <div>
-            <p>Profile Picture:</p>
+          <div className='loginForm'>
             <input 
                 type="text" 
                 name="avatarURL" 
                 value={formData.avatarURL}
                 onChange={handleChange}
-                placeholder="URL" 
+                placeholder="Avatar URL" 
             />
           </div>
           {isLoggedIn ?

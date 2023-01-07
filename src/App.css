@@ -17,19 +17,17 @@ body {
   padding-bottom: 1em;
 }
 
-div.chatBox {
+.chatBox {
   display: flex;
   justify-content: left;
   align-items: center;
   align-self: baseline;
-  margin-bottom: 1em;
   padding: 20px;
 }
 
 .usersBox {
   display: flex;
   background-color: #788585;
-  margin-top: 1em;
   padding-top: 1em;
   padding-right: 1em;
   text-align: center;
@@ -51,7 +49,7 @@ div.chatBox {
 }
 button {
   background-color: #9CAEA9;
-  margin-left : 2em;
+  margin-bottom: 0.5em;
 }
 .submitButton {
   margin-top: 1em;
@@ -65,18 +63,19 @@ button.deleteButton {
   align-self: center;
 }
 .homeScreen {
-  margin-top : 2em;
   border-style: solid;
   background-color: #788585;
   padding: 1em 1em 1em 1em;
 }
 .loginScreen {
-  margin-top : 2em;
   border-style: solid;
   padding-bottom: 1em;
   padding-top: 1em;
   color : #171616;
   background-color:#6F6866;
+}
+.loginForm {
+  margin-bottom : 1em;
 }
 .newComment {
   display: flex;
