@@ -22,22 +22,11 @@ function App() {
     console.log("initializing data...")
     handleFetchUserData();
     handleFetchMessages();
-  }, [])
-
-  // update user
-  function handleUpdateUser(updatedUser) {
-    const updateUser = allUsersData.map((user) =>
-      user.id === updatedUser.id ? updatedUser : user     
-    );
-    console.log(updateUser)
-    setLoggedInUser(updateUser)
-    return setUsersData(updateUser)
-  }
+  }, [isLoggedIn])
 
 
   // fetch messages
   const handleFetchMessages = async () => {
-    console.log("fetching message data...")
     await fetch("https://chat-app-data.onrender.com/messages", {
       method: "GET",
       headers: {
@@ -45,15 +34,13 @@ function App() {
       },
   })
       .then((r) => r.json())
-      .then((message) => {
-          setMessages(message)             
-      })
+      .then(setMessages)
       .catch((error) => console.log(error))
   }
 
+
   // fetch users
   const handleFetchUserData = async () => {
-  console.log("fetching user data")
   await fetch("https://chat-app-data.onrender.com/users", {
       method: "GET",
       headers: {
@@ -61,10 +48,7 @@ function App() {
       },
   })
       .then((r) => r.json())
-      .then((data) => {
-          setUsersData(data)
-          console.log(data)             
-      })
+      .then(setUsersData)
       .catch((error) => console.log(error))
   }
 
@@ -94,13 +78,11 @@ function App() {
 
         <Route exact path="/login">
           <Login 
-            onHandleUpdateUser={handleUpdateUser} 
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn} 
             setLoggedInUser={setLoggedInUser} 
             allUsersData={allUsersData}
             setUsersData={setUsersData}
-            fetchUserData={handleFetchUserData}
           />
         </Route>
 

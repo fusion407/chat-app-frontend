@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { useHistory } from "react-router-dom";
 
-function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, setLoggedInUser, allUsersData, setUsersData}) {
+function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
     const history = useHistory();
-    const [foundUserId, setFoundUserId] = useState();
     const [formData, setFormData] = useState({
         username: '',
         avatarURL: '',
     });
-
-    useEffect(() => {
-      console.log("updating user data...")
-  }, [])
-  if(!allUsersData) return "Loading..."
 
 
   async function submitLoginData() {
@@ -65,46 +59,27 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, set
       } else {
         setLoggedInUser(foundUser)
         setIsLoggedIn(true)
-        setFoundUserId(foundUser.key)
         alert(`Welcome, ${foundUser.username}! You may now chat.`)
         history.push("/")
         return;
       }
-      
-      // todo: create new button with event listener that handles change of users profile
-
-      // {
-      //   if(formData.username === user.username) {
-      //     if(!user.username) {
-      //       alert("Account not found")
-      //       return;
-      //     } else {
-      //       if(formData.avatarURL !== user.avatarURL && formData.avatarURL !== '') {
-      //         updateUserProfile(formData, user.id)
-      //         alert("Updated user profile picture.")
-      //         setIsLoggedIn(true)
-      //         setLoggedInUser(user)
-      //         history.push("/")
-      //         return;
-      //       }
-      //     }
-      //     setLoggedInUser(user)
-      //     setIsLoggedIn(true)
-      //     alert(`Welcome, ${user.username}! You may now chat.`)
-      //     history.push("/")
-      //     return;
-      //   }  
-      // })
-
-
     }
 
 
+  // update user
+  function handleUpdateUser(updatedUser) {
+    const updateUser = allUsersData.map((user) =>
+      user.id === updatedUser.id ? updatedUser : user     
+    );
+    console.log(updateUser)
+    setLoggedInUser(updateUser)
+    setUsersData(updateUser)
+  }
     function updateUserProfile(id) {
-      console.log(foundUserId)
+      console.log(id)
 
-      if(!foundUserId) {
-        alert("Please log in before updating profile")
+      if(!id) {
+        alert("Account does not exist.")
         return;
       }
       fetch(`https://chat-app-data.onrender.com/users/${id}`, {
@@ -117,10 +92,24 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, set
       })
     })
         .then((r) => r.json())
-        .then(() => onHandleUpdateUser)
+        .then(() => handleUpdateUser)
         .catch((error) => console.log(error))
     }
 
+
+    function onUpdateClick(e) {
+      e.preventDefault();
+      const foundUser = allUsersData.find((user) => user.username === formData.username)
+      if(!foundUser) return;
+      else {
+        updateUserProfile(foundUser.id)
+        setLoggedInUser('')
+        setIsLoggedIn(false)
+        alert("Updated profile picture, please log back in")
+        history.push("/")
+      }
+    }
+    
     function handleChange(e) {
         e.preventDefault();
         setFormData({
@@ -129,10 +118,14 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, set
         });
     }
     
+
     function handleSubmit(e) {
         e.preventDefault();
         checkLoginData(e);
     }
+
+
+
     function handleLogout(e) {
       e.preventDefault();
       setLoggedInUser("")
@@ -140,6 +133,7 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, set
       history.push("/")
     }
     
+
     return (
       <div className="loginScreen">
         <h1>Login</h1>
@@ -163,9 +157,13 @@ function Login({onHandleUpdateUser, isLoggedIn, setIsLoggedIn, loggedInUser, set
                 placeholder="URL" 
             />
           </div>
+          {isLoggedIn ?
+          <button onClick={onUpdateClick}>Update Profile Picture</button>
+          :
           <button type="submit">Login</button>
+
+          }
         </form>
-        <button onClick={() => updateUserProfile(foundUserId)}>Update Profile Picture</button>
         {isLoggedIn ? 
         <button onClick={handleLogout}>Logout</button>
         :

@@ -1,8 +1,12 @@
 import { Redirect } from 'react-router-dom'
 import User from "./User"
+// import { useEffect } from 'react'
 
 function Users({isLoggedIn, allUsersData}) {
 
+  // useEffect(() => {
+  //   console.log("rendering user data...")
+  // }, [allUsersData])
 
   if(!isLoggedIn) return <Redirect to="/login" />
   const allUsersArray = allUsersData;
