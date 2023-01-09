@@ -20,7 +20,6 @@ function App() {
 
 
   useEffect(() => {
-    console.log("initializing data...")
     handleFetchUserData();
     handleFetchMessages();
   }, [isLoggedIn])
@@ -52,7 +51,7 @@ function App() {
   }
 
   return (
-    
+
     <div>
 
       <NavBar isLoggedIn={isLoggedIn} loggedInUser={loggedInUser}/>

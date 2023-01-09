@@ -29,7 +29,35 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         .catch((error) => console.log(error))
     }
 
-
+    function handleUpdateUser(updatedUser) {
+      const updateUser = allUsersData.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user     
+      );
+      console.log(updateUser)
+      setLoggedInUser(updateUser)
+      setUsersData(updateUser)
+    }
+      function updateUserProfile(id) {
+        console.log(id)
+  
+        if(!id) {
+          alert("Account does not exist.")
+          return;
+        }
+        fetch(`https://chat-app-data.onrender.com/users/${id}`, {
+          method: "PATCH",
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+          body: JSON.stringify({
+            avatarURL : formData.avatarURL,
+        })
+      })
+          .then((r) => r.json())
+          .then(() => handleUpdateUser)
+          .catch((error) => console.log(error))
+      }
+  
     function handleCreateAccount() {
       if(formData.username === '') {
         alert("Please enter a username");
@@ -64,36 +92,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         history.push("/")
         return;
       }
-    }
-
-
-  function handleUpdateUser(updatedUser) {
-    const updateUser = allUsersData.map((user) =>
-      user.id === updatedUser.id ? updatedUser : user     
-    );
-    console.log(updateUser)
-    setLoggedInUser(updateUser)
-    setUsersData(updateUser)
-  }
-    function updateUserProfile(id) {
-      console.log(id)
-
-      if(!id) {
-        alert("Account does not exist.")
-        return;
-      }
-      fetch(`https://chat-app-data.onrender.com/users/${id}`, {
-        method: "PATCH",
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-        body: JSON.stringify({
-          avatarURL : formData.avatarURL,
-      })
-    })
-        .then((r) => r.json())
-        .then(() => handleUpdateUser)
-        .catch((error) => console.log(error))
     }
 
 

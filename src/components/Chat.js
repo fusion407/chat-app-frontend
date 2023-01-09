@@ -13,7 +13,28 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
 
 
     if(!isLoggedIn) return <Redirect to="/login" />
+    
+    async function handleSubmit(e) {
+        e.preventDefault();
 
+        if(!formData.comment) return;
+        await fetch("https://chat-app-data.onrender.com/messages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                key : formData.id,
+                name : loggedInUser.username,
+                comment : formData.comment,
+                avatarURL : loggedInUser.avatarURL,
+            })
+        })
+            .then((r) => r.json())
+            .then((message) => {
+                setMessages((messages) => [...messages, message])
+            })
+    }
 
     const deleteComment = async (id) => {
         console.log(id)
@@ -43,29 +64,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             ...formData,
             [e.target.name]: e.target.value,
         });
-    }
-
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        if(!formData.comment) return;
-        await fetch("https://chat-app-data.onrender.com/messages", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                key : formData.id,
-                name : loggedInUser.username,
-                comment : formData.comment,
-                avatarURL : loggedInUser.avatarURL,
-            })
-        })
-            .then((r) => r.json())
-            .then((message) => {
-                setMessages((messages) => [...messages, message])
-            })
     }
 
 

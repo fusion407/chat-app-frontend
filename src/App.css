@@ -19,10 +19,12 @@ body {
 
 .chatBox {
   display: flex;
-  justify-content: left;
-  align-items: center;
   align-self: baseline;
   padding: 20px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -1em;
 }
 
 .usersBox {
@@ -61,6 +63,7 @@ button:hover {
 button.deleteButton {
   display: flex;
   align-self: center;
+  margin-left: 1em;
 }
 .homeScreen {
   border-style: solid;
