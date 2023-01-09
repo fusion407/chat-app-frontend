@@ -7,7 +7,7 @@ const linkStyles = {
     flexdirection: "row",
     aligncontent: "center",
     justifycontent: "center",
-    width: "90px",
+    width: "5em",
     borderStyle: "solid",
     borderColor: "#38302E",
     padding: "1em",

@@ -25,7 +25,7 @@ body {
 }
 
 .chatBox {
-  display: flex;
+  display: inline-flex;
   align-self: baseline;
   padding: 20px;
   flex-wrap: nowrap;
