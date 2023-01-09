@@ -44,7 +44,7 @@ function NavBar(props) {
             background: "#858da5",
           }}
         >
-          Forum
+          Chat
         </NavLink>
 
 

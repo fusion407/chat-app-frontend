@@ -6,7 +6,7 @@ function Home() {
         <div className="homeScreen">
             <h1>Welcome to ChatApp!</h1>
             <h3>
-                This is a single-page application developed with 
+                This is a single-page forum application developed with 
                 ReactJS and json-server.
             </h3>
             <h5>
