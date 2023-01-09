@@ -3,6 +3,7 @@ import defaultProfile from '../defaultProfile.png'
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function Message ({id, name, comment, avatarURL, deleteComment}) {
+    
     return(
         <div className="chatBox" value={name}>
             <div>
@@ -16,5 +17,6 @@ function Message ({id, name, comment, avatarURL, deleteComment}) {
         </div>
     )
 }
+
 
 export default Message

@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 
 function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
@@ -41,7 +41,8 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         return;
       } else {
         submitLoginData(formData)
-        alert("Created new user.")
+        setIsLoggedIn(true)
+        alert("Created new user. Welcome!")
         history.push("/")
       }
     }
@@ -57,8 +58,8 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         alert("Account does not exist")
         return;
       } else {
-        setLoggedInUser(foundUser)
         setIsLoggedIn(true)
+        setLoggedInUser(foundUser)
         alert(`Welcome, ${foundUser.username}! You may now chat.`)
         history.push("/")
         return;
@@ -66,7 +67,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
     }
 
 
-  // update user
   function handleUpdateUser(updatedUser) {
     const updateUser = allUsersData.map((user) =>
       user.id === updatedUser.id ? updatedUser : user     
@@ -110,6 +110,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       }
     }
     
+
     function handleChange(e) {
         e.preventDefault();
         setFormData({
@@ -118,13 +119,10 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         });
     }
     
-
     function handleSubmit(e) {
         e.preventDefault();
         checkLoginData(e);
     }
-
-
 
     function handleLogout(e) {
       e.preventDefault();

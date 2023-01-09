@@ -1,6 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom";
 
+
 const linkStyles = {
     display: "inline-flex",
     flexdirection: "row",
@@ -13,9 +14,14 @@ const linkStyles = {
     textDecoration: "none",
     color: "black",
   };
+
+
 function NavBar(props) {
+
     return (
+
       <div>
+
         <NavLink
           to="/"
           exact
@@ -26,6 +32,8 @@ function NavBar(props) {
         >
           Home
         </NavLink>
+
+
         <NavLink
           to="/chat"
           exact
@@ -36,6 +44,8 @@ function NavBar(props) {
         >
           Forum
         </NavLink>
+
+
         <NavLink
           to="/users"
           exact
@@ -46,6 +56,8 @@ function NavBar(props) {
         >
           Users
         </NavLink>
+
+
         <NavLink
           to="/login"
           exact
@@ -56,11 +68,14 @@ function NavBar(props) {
         >
           Login
         </NavLink>
+
         <h3>
           {!props.isLoggedIn ? 'Logged out' : 'Logged in as: ' + props.loggedInUser.username}
         </h3>
+
       </div>
     );
   }
+
 
 export default NavBar

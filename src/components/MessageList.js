@@ -1,6 +1,7 @@
 import Message from "./Message"
 
 function MessageList(props) {
+
     const messageArray = props.messages;
     const messagesToDisplay = messageArray.map((message) => 
     <Message 
@@ -12,11 +13,13 @@ function MessageList(props) {
         deleteComment={props.deleteComment}
     />
 )
+
     return(
         <>
             {messagesToDisplay}
         </>
     )
 }
+
 
 export default MessageList

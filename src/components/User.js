@@ -2,6 +2,7 @@ import React from 'react'
 import defaultProfile from '../defaultProfile.png'
 
 function User ({name, avatar}) {
+
     return(
         <div>
             <ul className="userBox">
@@ -11,5 +12,6 @@ function User ({name, avatar}) {
         </div>
     )
 }
+
 
 export default User

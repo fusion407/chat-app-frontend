@@ -5,12 +5,15 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
 
 function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
+    
     const [formData, setFormData] = useState({
         username : '',
         comment : '',
     })
 
+
     if(!isLoggedIn) return <Redirect to="/login" />
+
 
     const deleteComment = async (id) => {
         console.log(id)
@@ -33,12 +36,16 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             })  
             .catch((error) => console.log(error))
     }
+
+
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     }
+
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -60,6 +67,8 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
                 setMessages((messages) => [...messages, message])
             })
     }
+
+
     return (
         <div className="chatPage">
             <div className="chatBox">
@@ -90,5 +99,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
         </div>
       );
 }
+
 
 export default Chat

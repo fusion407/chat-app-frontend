@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Home() {
+   
     return(
         <div className="homeScreen">
             <h1>Welcome to myForum !</h1>
@@ -20,5 +21,6 @@ function Home() {
         </div>
     )
 }
+
 
 export default Home;

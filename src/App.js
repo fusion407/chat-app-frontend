@@ -18,6 +18,7 @@ function App() {
   })
   const [messages, setMessages] = useState([]);
 
+
   useEffect(() => {
     console.log("initializing data...")
     handleFetchUserData();
@@ -25,7 +26,6 @@ function App() {
   }, [isLoggedIn])
 
 
-  // fetch messages
   const handleFetchMessages = async () => {
     await fetch("https://chat-app-data.onrender.com/messages", {
       method: "GET",
@@ -39,7 +39,6 @@ function App() {
   }
 
 
-  // fetch users
   const handleFetchUserData = async () => {
   await fetch("https://chat-app-data.onrender.com/users", {
       method: "GET",
@@ -53,7 +52,9 @@ function App() {
   }
 
   return (
+    
     <div>
+
       <NavBar isLoggedIn={isLoggedIn} loggedInUser={loggedInUser}/>
       <Switch>
         <Route exact path="/chat">
@@ -62,8 +63,6 @@ function App() {
             loggedInUser={loggedInUser}
             messages={messages}
             setMessages={setMessages}
-            allUsersData={allUsersData}
-            onUpdateMessage={handleFetchMessages}
           />
         </Route>
 
@@ -71,8 +70,6 @@ function App() {
           <Users 
             isLoggedIn={isLoggedIn} 
             allUsersData={allUsersData}
-            setUsersData={setUsersData}
-            fetchUserData={handleFetchUserData} 
           />
         </Route>
 
@@ -91,9 +88,10 @@ function App() {
         </Route>
 
       </Switch>
-    </div>
 
+    </div>
   );
 }
+
 
 export default App;
