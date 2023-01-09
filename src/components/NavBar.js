@@ -12,7 +12,7 @@ const linkStyles = {
     borderColor: "#38302E",
     padding: "1em",
     margin: "2em 6px 6px",
-    background: "#9CAEA9",
+    background: "#a8b3d1",
     textDecoration: "none",
     color: "black",
   };
@@ -29,7 +29,7 @@ function NavBar(props) {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#788585",
+            background: "#858da5",
           }}
         >
           Home
@@ -41,7 +41,7 @@ function NavBar(props) {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#788585",
+            background: "#858da5",
           }}
         >
           Forum
@@ -53,7 +53,7 @@ function NavBar(props) {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#788585",
+            background: "#858da5",
           }}
         >
           Users
@@ -65,7 +65,7 @@ function NavBar(props) {
           exact
           style={linkStyles}
           activeStyle={{
-            background: "#788585",
+            background: "#858da5",
           }}
         >
           Login

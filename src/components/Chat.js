@@ -13,7 +13,7 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
 
 
     if(!isLoggedIn) return <Redirect to="/login" />
-    
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -70,8 +70,8 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     return (
         <div className="chatPage">
             <div className="chatBox">
-                    <Card style={{ background: "#9CAEA9", width: '25rem' }}>
-                        <ListGroup style={{background: "#6F6866", width: 'auto'}}variant="flush">
+                    <Card style={{ background: "rgba(200, 155, 183, 0.4)", width: '25rem' }}>
+                        <ListGroup style={{background: "rgba(145, 155, 183, 0.2)", width: 'auto'}}variant="flush">
                             <MessageList 
                                 messages={messages}
                                 deleteComment={deleteComment}

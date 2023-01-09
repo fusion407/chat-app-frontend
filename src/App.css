@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 body {
-  background-color: #CCDAD1;
+
   display: flex;
+  background-color: #CCDAD1;
+  background-image: url(background.jpg);
+  background-position:top;
   font-family: 'Josefin Sans', cursive;
   align-items: center;
   text-align: center;
   justify-content: center;
   color: #38302E;
+
+ /* Center the image */
+  /* background-repeat: no-repeat; Do not repeat the image */
+  /* background-size: cover; Resize the background image to cover the entire container */
 }
 .App {
   display: flex;
@@ -29,7 +36,7 @@ body {
 
 .usersBox {
   display: flex;
-  background-color: #788585;
+  background-color:rgba(145, 155, 183, 0.4);
   padding-top: 1em;
   padding-right: 1em;
   text-align: center;
@@ -67,7 +74,7 @@ button.deleteButton {
 }
 .homeScreen {
   border-style: solid;
-  background-color: #788585;
+  background-color:rgba(145, 155, 183, 0.4);
   padding: 1em 1em 1em 1em;
 }
 .loginScreen {
@@ -75,7 +82,7 @@ button.deleteButton {
   padding-bottom: 1em;
   padding-top: 1em;
   color : #171616;
-  background-color:#6F6866;
+  background-color:rgba(145, 155, 183, 0.4);
 }
 .loginForm {
   margin-bottom : 1em;
