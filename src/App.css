@@ -19,6 +19,8 @@ body {
 div.list-group {
   /* background: rgba(145, 155, 183, 0.2); */
   display: flex;
+  justify-content: center;
+  align-self: center;
   flex-wrap: wrap;
   flex-direction: row-reverse;
 }
@@ -31,14 +33,13 @@ div.list-group {
 }
 
 .chatBox {
-  display: inline-flex;
-  align-self: stretch;
+  display: flex;
+  align-self: center;
   padding: 20px;
-  flex-wrap: nowrap;
   flex-direction: row;
   width: auto;
-  align-items: center;
   margin-top: -1em;
+  justify-content: center;
 }
 
 .usersBox {
