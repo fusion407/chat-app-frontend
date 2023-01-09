@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
 
-function Chat({isLoggedIn, loggedInUser, messages, setMessages, allUsersData}) {
+function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     const [formData, setFormData] = useState({
         username : '',
         comment : '',
