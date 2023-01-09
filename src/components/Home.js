@@ -4,16 +4,18 @@ function Home() {
    
     return(
         <div className="homeScreen">
-            <h1>Welcome to myForum !</h1>
-            <h4>
-                This is a single page application created with 
-                ReactJS.
-            </h4>
+            <h1>Welcome to ChatApp!</h1>
+            <h3>
+                This is a single-page application developed with 
+                ReactJS and json-server.
+            </h3>
             <h5>
-                Create a user and (optional) input link of image file for your avatar,
+                Create a user profile and (optional) input a link of an 
+                image file (.jpg, .png, etc..) for your avatar.
             </h5>
             <h5>
-            then you may add posts in the forum page.
+                You may update your avatar image anytime you are logged in 
+                within the login page.
             </h5>
             <h4>
                 Enjoy!
