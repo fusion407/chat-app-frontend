@@ -57,7 +57,7 @@ function NavBar(props) {
           Login
         </NavLink>
         <h3>
-          {!props.isLoggedIn ? 'Logged out' : 'Logged in: ' + props.loggedInUser.username}
+          {!props.isLoggedIn ? 'Logged out' : 'Logged in as: ' + props.loggedInUser.username}
         </h3>
       </div>
     );
