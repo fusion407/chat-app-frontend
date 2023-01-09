@@ -70,8 +70,8 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     return (
         <div className="chatPage">
             <div className="chatBox">
-                    <Card style={{ background: "rgba(200, 155, 183, 0.4)", width: '25rem' }}>
-                        <ListGroup style={{background: "rgba(145, 155, 183, 0.2)", width: 'auto'}}variant="flush">
+                    <Card style={{ background: "rgba(200, 155, 183, 0.4)", width: '30rem' }}>
+                        <ListGroup style={{background: "rgba(145, 155, 183, 0.2)", width: '30rem'}}>
                             <MessageList 
                                 messages={messages}
                                 deleteComment={deleteComment}

@@ -2,7 +2,7 @@
 
 body {
 
-  display: flex;
+  /* display: flex; */
   background-color: #CCDAD1;
   background-image: url(background.jpg);
   background-position:top;
@@ -16,6 +16,12 @@ body {
   /* background-repeat: no-repeat; Do not repeat the image */
   /* background-size: cover; Resize the background image to cover the entire container */
 }
+div.list-group {
+  /* background: rgba(145, 155, 183, 0.2); */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
 .App {
   display: flex;
   text-align: center;
@@ -26,10 +32,11 @@ body {
 
 .chatBox {
   display: inline-flex;
-  align-self: baseline;
+  align-self: stretch;
   padding: 20px;
   flex-wrap: nowrap;
   flex-direction: row;
+  width: auto;
   align-items: center;
   margin-top: -1em;
 }
@@ -40,6 +47,7 @@ body {
   padding-top: 1em;
   padding-right: 1em;
   text-align: center;
+  justify-content: center;
   border-style: solid;
   border-color: #38302E;
   flex-direction: row;
