@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useHistory } from "react-router-dom";
+import Button from '@mui/material/Button';
+
 
 function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
     const history = useHistory();
@@ -29,6 +31,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         .catch((error) => console.log(error))
     }
 
+
     function handleUpdateUser(updatedUser) {
       const updateUser = allUsersData.map((user) =>
         user.id === updatedUser.id ? updatedUser : user     
@@ -37,27 +40,30 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       setLoggedInUser(updateUser)
       setUsersData(updateUser)
     }
-      function updateUserProfile(id) {
-        console.log(id)
-  
-        if(!id) {
-          alert("Account does not exist.")
-          return;
-        }
-        fetch(`https://chat-app-data.onrender.com/users/${id}`, {
-          method: "PATCH",
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          },
-          body: JSON.stringify({
-            avatarURL : formData.avatarURL,
-        })
-      })
-          .then((r) => r.json())
-          .then(() => handleUpdateUser)
-          .catch((error) => console.log(error))
+    
+    
+    function updateUserProfile(id) {
+      console.log(id)
+
+      if(!id) {
+        alert("Account does not exist.")
+        return;
       }
+      fetch(`https://chat-app-data.onrender.com/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          avatarURL : formData.avatarURL,
+      })
+    })
+        .then((r) => r.json())
+        .then(() => handleUpdateUser)
+        .catch((error) => console.log(error))
+    }
   
+
     function handleCreateAccount() {
       if(formData.username === '') {
         alert("Please enter a username");
@@ -98,7 +104,10 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
     function onUpdateClick(e) {
       e.preventDefault();
       const foundUser = allUsersData.find((user) => user.username === formData.username)
-      if(!foundUser) return;
+      if(!foundUser) {
+        alert("Please input the username with new image URL")
+        return;
+      }
       else {
         updateUserProfile(foundUser.id)
         setLoggedInUser('')
@@ -121,6 +130,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         e.preventDefault();
         checkLoginData(e);
     }
+
 
     function handleLogout(e) {
       e.preventDefault();
@@ -153,19 +163,49 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
             />
           </div>
           {isLoggedIn ?
-          <button onClick={onUpdateClick}>Update Profile Picture</button>
+          <Button 
+            color="success" 
+            onClick={onUpdateClick} 
+            variant="contained"
+            >
+              Update Profile Picture
+          </Button>
           :
-          <button type="submit">Login</button>
+          <Button 
+            type="submit" 
+            variant="contained"
+            >
+              Login
+          </Button>
 
           }
         </form>
         {isLoggedIn ? 
-        <button onClick={handleLogout}>Logout</button>
+        <Button 
+          color="error" 
+          onClick={handleLogout} 
+          variant="outlined"
+          sx={{
+            marginTop: "1em"
+          }}
+          >
+            Logout
+        </Button>
         :
-        <button onClick={handleCreateAccount}>Create Account</button>
+        <Button 
+          onClick={handleCreateAccount} 
+          variant="outlined"
+          sx={{
+            marginTop: "1em"
+          }}
+          >
+            Create Account
+        </Button>
         }
         </div>
     );
   }
 
+
+  
 export default Login

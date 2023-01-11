@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 body {
 
-  /* display: flex; */
   background-color: #CCDAD1;
   background-image: url(background.jpg);
   background-position:top;
@@ -11,13 +12,8 @@ body {
   text-align: center;
   justify-content: center;
   color: #38302E;
-
- /* Center the image */
-  /* background-repeat: no-repeat; Do not repeat the image */
-  /* background-size: cover; Resize the background image to cover the entire container */
 }
 div.list-group {
-  /* background: rgba(145, 155, 183, 0.2); */
   display: flex;
   justify-content: center;
   align-self: center;
@@ -65,7 +61,7 @@ div.list-group {
   height: 5rem;
   width: 6rem;
 }
-button {
+.button {
   background-color: #9CAEA9;
   margin-bottom: 0.5em;
 }

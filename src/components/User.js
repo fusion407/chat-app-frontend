@@ -1,4 +1,3 @@
-import React from 'react'
 import defaultProfile from '../defaultProfile.png'
 
 function User ({name, avatar}) {

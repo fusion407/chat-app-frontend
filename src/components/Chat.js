@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send'
 
 function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     
@@ -16,7 +18,6 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-
         if(!formData.comment) return;
         await fetch("https://chat-app-data.onrender.com/messages", {
             method: "POST",
@@ -36,6 +37,7 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             })
     }
 
+    
     const deleteComment = async (id) => {
         console.log(id)
         fetch(`https://chat-app-data.onrender.com/messages/${id}`, {
@@ -90,7 +92,16 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
                         />
                     </label>
                     <div>
-                        <button className="submitButton" type="submit">Add Comment</button>
+                        <Button 
+                            type="submit"
+                            variant="contained"
+                            endIcon={<SendIcon />}
+                            sx={{
+                                marginTop: "1em",
+                            }}
+                            >
+                                Add Comment
+                        </Button>
                     </div>
                 </form>
             </div>

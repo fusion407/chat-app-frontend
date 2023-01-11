@@ -1,6 +1,4 @@
-import React from "react"
 import { NavLink } from "react-router-dom";
-
 
 const linkStyles = {
     display: "inline-flex",
@@ -44,7 +42,7 @@ function NavBar(props) {
             background: "#858da5",
           }}
         >
-          Chat
+          Forum
         </NavLink>
 
 
