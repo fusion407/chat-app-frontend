@@ -20,9 +20,10 @@ function App() {
 
 
   useEffect(() => {
+    console.log("fetching data")
     handleFetchUserData();
     handleFetchMessages();
-  }, [isLoggedIn])
+  }, [])
 
 
   const handleFetchMessages = async () => {

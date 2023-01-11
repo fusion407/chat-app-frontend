@@ -3,8 +3,10 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete'
 
-function Message ({id, name, comment, avatarURL, deleteComment}) {
+function Message ({message, deleteComment}) {
     
+    const {id, name, comment, avatarURL} = message
+
     return(
         <div className="chatBox" value={name}>
             <div>

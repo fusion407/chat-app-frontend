@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -84,11 +84,11 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             <div className="newComment">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        New Comment:
                         <input 
                             type="text"
                             name="comment"
                             onChange={handleChange}
+                            placeholder="Comment"
                         />
                     </label>
                     <div>

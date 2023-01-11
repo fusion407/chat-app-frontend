@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 
 
+
 function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
@@ -17,16 +18,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         headers: {
             "Content-Type" : "application/json",
         },
-        body: JSON.stringify({
-          key : formData.id,
-          username : formData.username,
-          avatarURL : formData.avatarURL,
-      })
+        body: JSON.stringify(formData)
     })
         .then((r) => r.json())
-        .then((user) => {
-          setLoggedInUser(user);
-          setUsersData((user) => [...allUsersData, user])
+        .then((newUser) => {
+          setLoggedInUser(newUser);
+          setUsersData((users) => [...users, newUser])
         })
         .catch((error) => console.log(error))
     }
@@ -36,15 +33,12 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       const updateUser = allUsersData.map((user) =>
         user.id === updatedUser.id ? updatedUser : user     
       );
-      console.log(updateUser)
-      setLoggedInUser(updateUser)
       setUsersData(updateUser)
+      setLoggedInUser(updatedUser)
     }
     
     
     function updateUserProfile(id) {
-      console.log(id)
-
       if(!id) {
         alert("Account does not exist.")
         return;
@@ -59,7 +53,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       })
     })
         .then((r) => r.json())
-        .then(() => handleUpdateUser)
+        .then((updatedUser) => handleUpdateUser(updatedUser))
         .catch((error) => console.log(error))
     }
   
@@ -93,9 +87,9 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         return;
       } else {
         setIsLoggedIn(true)
-        setLoggedInUser(foundUser)
+        setLoggedInUser(foundUser);
         alert(`Welcome, ${foundUser.username}! You may now chat.`)
-        history.push("/")
+        history.push("/");
         return;
       }
     }
@@ -110,9 +104,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
       }
       else {
         updateUserProfile(foundUser.id)
-        setLoggedInUser('')
-        setIsLoggedIn(false)
-        alert("Updated profile picture, please log back in")
+        alert("Updated profile picture")
         history.push("/")
       }
     }
