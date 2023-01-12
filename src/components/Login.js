@@ -4,8 +4,6 @@ import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 
 
-
-
 function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUsersData}) {
     const history = useHistory();
     const [formData, setFormData] = useState({
@@ -119,7 +117,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
             [e.target.name]: e.target.value,
         });
     }
-    
+
     function handleSubmit(e) {
         e.preventDefault();
         checkLoginData(e);
@@ -136,16 +134,9 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
 
     return (
       <div className="loginScreen">
-        <h1>Login</h1>
+        <h1 className="loginTitle">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className='loginForm'>
-            {/* <input 
-                type="text" 
-                name="username" 
-                value={formData.username}
-                onChange={handleChange}
-                placeholder="Username" 
-            /> */}
             <Input 
                 type="text" 
                 name="username" 
@@ -156,13 +147,6 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
 
           </div>
           <div className='loginForm'>
-            {/* <input 
-                type="text" 
-                name="avatarURL" 
-                value={formData.avatarURL}
-                onChange={handleChange}
-                placeholder="Avatar URL" 
-            /> */}
             <Input 
               type="text" 
               name="avatarURL" 

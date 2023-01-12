@@ -12,13 +12,9 @@ function Message ({message, deleteComment}) {
     return(
         <div className="chatBox" value={name}>
             <div>
-                {/* <img 
-                    className="avatarImage" 
-                    src={avatarURL ? avatarURL : defaultProfile} 
-                    alt="avatarImage">
-                 </img> */}
+
                 <Avatar 
-                    // alt="avatarImage" 
+                    alt="avatarImage" 
                     src={avatarURL ? avatarURL : defaultProfile} 
                     className="avatarImage"
                     sx={{
@@ -29,7 +25,11 @@ function Message ({message, deleteComment}) {
                 />
             </div>
             <div>
-                <ListGroup.Item style={{background: "rgba(168, 179, 209, 0.4)"}}>{name ? name : "Anonymous"}:</ListGroup.Item>
+                <ListGroup.Item 
+                    style={{background: "rgba(168, 179, 209, 0.4)"}}
+                    >
+                    {name ? name : "Anonymous"}:
+                </ListGroup.Item>
                 <ListGroup.Item>{comment}</ListGroup.Item>
             </div>
             <div>
