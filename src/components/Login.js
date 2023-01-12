@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+
 
 
 
@@ -71,7 +73,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         submitLoginData(formData)
         setIsLoggedIn(true)
         alert("Created new user. Welcome!")
-        history.push("/")
+        history.push("/chat")
       }
     }
 
@@ -89,7 +91,7 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         setIsLoggedIn(true)
         setLoggedInUser(foundUser);
         alert(`Welcome, ${foundUser.username}! You may now chat.`)
-        history.push("/");
+        history.push("/chat");
         return;
       }
     }
@@ -137,21 +139,36 @@ function Login({isLoggedIn, setIsLoggedIn, setLoggedInUser, allUsersData, setUse
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <div className='loginForm'>
-            <input 
+            {/* <input 
+                type="text" 
+                name="username" 
+                value={formData.username}
+                onChange={handleChange}
+                placeholder="Username" 
+            /> */}
+            <Input 
                 type="text" 
                 name="username" 
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Username" 
             />
+
           </div>
           <div className='loginForm'>
-            <input 
+            {/* <input 
                 type="text" 
                 name="avatarURL" 
                 value={formData.avatarURL}
                 onChange={handleChange}
                 placeholder="Avatar URL" 
+            /> */}
+            <Input 
+              type="text" 
+              name="avatarURL" 
+              value={formData.avatarURL}
+              onChange={handleChange}
+              placeholder="Avatar URL" 
             />
           </div>
           {isLoggedIn ?
