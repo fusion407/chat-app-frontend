@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import MessageList from "./MessageList"
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send'
+import Input from '@mui/material/Input';
 
 function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     
@@ -84,11 +85,12 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
             <div className="newComment">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <input 
+                        <Input 
                             type="text"
+                            multiline={true}
                             name="comment"
                             onChange={handleChange}
-                            placeholder="Comment"
+                            placeholder="Comment" 
                         />
                     </label>
                     <div>
