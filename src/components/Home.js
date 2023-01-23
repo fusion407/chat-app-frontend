@@ -3,7 +3,7 @@ function Home() {
    
     return(
         <div className="homeScreen">
-            <h1>Welcome to ChatApp!</h1>
+            <h1>Welcome to ForumApp!</h1>
             <h3>
                 This is a single-page forum application developed with 
                 ReactJS and json-server.

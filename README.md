@@ -1,6 +1,6 @@
-Welcome to ChatApp!
+## React Forum Application
 
-This is a boot camp project I have completed while attending Flatiron School in the flex Software Engineering program.
+![Screenshot](project-example.png)
 
 For this project, I was assigned to create a single page application from scratch using ReactJS for the front end, and json-server for the backend.
 
@@ -19,7 +19,6 @@ In order to fulfill the project requirements I must:
 
 ---------------------
 
-
 In total, I have made 8 React components; Home, Chat, Message, MessageList, NavBar, User, Users, Login.
 
 There are 4 different client-side routes: 
@@ -34,11 +33,9 @@ GET requests are made in the top level of the app (App.js).
 POST requests in Chat and Login components to submit message and new user data. PATCH within Login to update the users profile image.
 DELETE is called by an event listener which erases messages from the Chat.
 
-Styling was mostly vanilla CSS, but bootstrap was used in order to help organize the item list in the Chat component and create my NavBar.
+Material UI and Bootstrap was used for styling.
 
-Blog:
-
-Video: 
+Video: https://youtu.be/GP1t36WpXdU
 
 The backend is hosted by Onrender: https://chat-app-data.onrender.com/
 
