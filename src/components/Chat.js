@@ -10,7 +10,6 @@ import Input from '@mui/material/Input';
 function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
     
     const [formData, setFormData] = useState({
-        username : '',
         comment : '',
     })
 
@@ -89,6 +88,7 @@ function Chat({isLoggedIn, loggedInUser, messages, setMessages}) {
                             type="text"
                             multiline={true}
                             name="comment"
+                            value={formData.comment}
                             onChange={handleChange}
                             placeholder="Comment" 
                         />
