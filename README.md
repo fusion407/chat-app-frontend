@@ -37,6 +37,6 @@ Material UI and Bootstrap was used for styling.
 
 Video: https://youtu.be/GP1t36WpXdU
 
-The backend is hosted by Onrender: https://chat-app-data.onrender.com/
+Backend: https://chat-app-data.onrender.com/
 
-The front end is hosted by Netlify: https://fusion407-chat-app.netlify.app/
+Deployment: https://fusion407-chat-app.netlify.app/
