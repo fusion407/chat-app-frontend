@@ -2,10 +2,9 @@
 
 ![Screenshot](project-example.png)
 
-For this project, I was assigned to create a single page application from scratch using ReactJS for the front end, and json-server for the backend.
+For this project, I was assigned to create a single page application from scratch using ReactJS to implement my front end, and json-server for my backend.
 
-I have decided to create a "Chat" or "Forum" application which allows the user to create a user account along with a personal profile image and make posts and interact within the Chat page.
-
+I have decided to create a "Chat" or "Forum" application which allows the user to create a user account along with a personal profile image and make comments withinin the chat page that other users may view.
 
 ---------------------
 
@@ -19,7 +18,17 @@ In order to fulfill the project requirements I must:
 
 ---------------------
 
-In total, I have made 8 React components; Home, Chat, Message, MessageList, NavBar, User, Users, Login.
+In total, I have made 8 React components:
+    -Home
+    -Chat
+    -Message
+    -MessageList
+    -NavBar
+    -Users
+    -User
+    -Login
+
+---------------------
 
 There are 4 different client-side routes: 
 
@@ -28,12 +37,23 @@ There are 4 different client-side routes:
 /login  -  login page  
 /  -  Home page
 
-Data is being fetched from an API I've deployed on Onrender.com (link below) 
-GET requests are made in the top level of the app (App.js).
-POST requests in Chat and Login components to submit message and new user data. PATCH within Login to update the users profile image.
-DELETE is called by an event listener which erases messages from the Chat.
+---------------------
+
+Full CRUD operations were implemented to make API requests to my deployed database containing user and message data.
+
+POST requests in Chat and Login components to submit message and new user data. 
+
+GET requests are made at initial render and setting the messages and allUsersData state in App component.
+
+PATCH request within Login to update the users profile image.
+
+DELETE request in Chat for users to delete comments.
+
+---------------------
 
 Material UI and Bootstrap was used for styling.
+
+---------------------
 
 Video: https://youtu.be/GP1t36WpXdU
 

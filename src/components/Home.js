@@ -6,10 +6,10 @@ function Home() {
             <h1>Welcome to ForumApp!</h1>
             <h3>
                 This is a single-page forum application developed with 
-                ReactJS and json-server.
+                ReactJS.
             </h3>
             <h5>
-                Create a user profile and (optional) input a link of an 
+                To use this app, you must create a user profile and (optional) input a URL link of an 
                 image file (.jpg, .png, etc..) for your avatar.
             </h5>
             <h5>
